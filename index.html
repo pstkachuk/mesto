@@ -17,56 +17,84 @@
       <section class="profile">
         <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
         <div class="profile__profile-info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <div class="profile__edit-button"></div>
+          <div class="profile__title-container">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <div class="profile__edit-button"></div>
+          </div>   
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
         <div class="profile__add-button"></div>
       </section>
 
       <section class="elements">
-        <figure class="element">
-          <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
-          <figcaption class="element__caption-container">
-            <p class="element__caption">Карачаевск</p>
-            <div class="element__like-button"></div>
-          </figcaption>
-        </figure>
-        <figure class="element">
-          <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-          <figcaption class="element__caption-container">
-            <p class="element__caption">Гора Эльбрус</p>
-            <div class="element__like-button"></div>
-          </figcaption>
-        </figure>
-        <figure class="element">
-          <img src="./images/dombai.jpg" alt="Домбай" class="element__image">
-          <figcaption class="element__caption-container">
-            <p class="element__caption">Домбай</p>
-            <div class="element__like-button"></div>
-          </figcaption>
-        </figure>
-        <figure class="element">
-          <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-          <figcaption class="element__caption-container">
-            <p class="element__caption">Гора Эльбрус</p>
-            <div class="element__like-button"></div>
-          </figcaption>
-        </figure>
-        <figure class="element">
-          <img src="./images/dombai.jpg" alt="Домбай" class="element__image">
-          <figcaption class="element__caption-container">
-            <p class="element__caption">Домбай</p>
-            <div class="element__like-button"></div>
-          </figcaption>
-        </figure>
-        <figure class="element">
-          <img src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия" class="element__image">
-          <figcaption class="element__caption-container">
-            <p class="element__caption">Карачаево-Черкессия</p>
-            <div class="element__like-button"></div>
-          </figcaption>
-        </figure>
+        <ul class="elements__list">
+          <li class="elements__list-item">
+            <figure class="element">
+              <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
+              <figcaption class="element__caption-container">
+                <p class="element__caption">Карачаевск</p>
+                <div class="element__like-button"></div>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__list-item">
+            <figure class="element">
+              <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
+              <figcaption class="element__caption-container">
+                <p class="element__caption">Гора Эльбрус</p>
+                <div class="element__like-button"></div>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__list-item">
+            <figure class="element">
+              <img src="./images/dombai.jpg" alt="Домбай" class="element__image">
+              <figcaption class="element__caption-container">
+                <p class="element__caption">Домбай</p>
+                <div class="element__like-button"></div>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__list-item">
+            <figure class="element">
+              <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
+              <figcaption class="element__caption-container">
+                <p class="element__caption">Гора Эльбрус</p>
+                <div class="element__like-button"></div>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__list-item">
+            <figure class="element">
+              <img src="./images/dombai.jpg" alt="Домбай" class="element__image">
+              <figcaption class="element__caption-container">
+                <p class="element__caption">Домбай</p>
+                <div class="element__like-button"></div>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__list-item">
+            <figure class="element">
+              <img src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия" class="element__image">
+              <figcaption class="element__caption-container">
+                <p class="element__caption">Карачаево-Черкессия</p>
+                <div class="element__like-button"></div>
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+      </section>
+
+      <section class="popup">
+        <div class="popup__container">
+          <form action="" class="popup__form">
+            <p class="popup__form-title">Редактировать профиль</p>
+            <input type="text" name="name" class="popup__input" placeholder="Жак-Ив Кусто">
+            <input type="text" name="info" class="popup__input" placeholder="Исследователь океана">
+            <button class="popup__submit-button">Сохранить</button>
+            <div class="popup__close-button"></div>
+          </form>
+        </div>
       </section>
     </main>
 
