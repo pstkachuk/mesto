@@ -7,4 +7,11 @@
   background-repeat: no-repeat;
   background-position: center;
   margin-left: 18px;
+  cursor: pointer;
+  transition: opacity .2s linear;
+}
+
+.profile__edit-button:hover {
+  opacity: .6;
+  transition: opacity .2s linear;
 }

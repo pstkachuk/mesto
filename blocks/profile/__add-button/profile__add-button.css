@@ -8,4 +8,11 @@
   background-repeat: no-repeat;
   background-position: center;
   margin-left: auto;
+  cursor: pointer;
+  transition: opacity .2s linear;
+}
+
+.profile__add-button:hover {
+  opacity: .6;
+  transition: opacity .2s linear;
 }
