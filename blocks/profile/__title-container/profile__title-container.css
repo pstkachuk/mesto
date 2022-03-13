@@ -1,4 +1,11 @@
 .profile__title-container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
+}
+
+@media screen and (max-width: 321px) {
+  .profile__title-container {
+    margin-left: 30px;
+    /* Для соответствия макету */
+  }
 }

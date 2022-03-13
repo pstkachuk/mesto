@@ -18,3 +18,11 @@
   opacity: .8;
   transition: opacity .2s linear;
 }
+
+@media screen and (max-width: 550px) {
+  .popup__submit-button {
+    min-height: 46px;
+    font-size: 14px;
+    margin-top: 45px;
+  }
+}

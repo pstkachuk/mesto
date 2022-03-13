@@ -6,3 +6,10 @@
   margin: 0;
   margin-bottom: 54px;
 }
+
+@media screen and (max-width: 550px) {
+  .popup__form-title {
+    font-size: 18px;
+    margin-bottom: 75px;
+  }
+}

@@ -6,3 +6,9 @@
   color: #545454;
   margin: 0;
 }
+
+@media screen and (max-width: 500px) {
+  .footer__copyright {
+    font-size: 14px;
+  }
+}

@@ -4,8 +4,20 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
-  margin-top: 16px;
+  margin-top: 8px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+@media screen and (max-width: 750px) {
+  .profile__subtitle {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile__subtitle {
+    margin-top: 6px;
+  }
 }

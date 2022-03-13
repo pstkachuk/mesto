@@ -1,4 +1,22 @@
 .elements {
   max-width: calc(100% - 200px * 2);
-  margin: 0 auto;  
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1279px) {
+  .elements {
+    max-width: calc(100% - 70px * 2);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .elements {
+    max-width: calc(100% - 40px * 2);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .elements {
+    max-width: calc(100% - 19px * 2);
+  }
 }
