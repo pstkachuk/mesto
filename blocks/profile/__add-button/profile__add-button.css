@@ -17,10 +17,11 @@
   transition: opacity .2s linear;
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 750px) {
   .profile__add-button {
     width: 282px;
     margin: 0 auto;
     margin-top: 36px;
+    background-size: 16px 16px;
   }
 }
