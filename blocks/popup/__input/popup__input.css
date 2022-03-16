@@ -15,3 +15,7 @@
 .popup__input:first-of-type {
   margin-bottom: 30px;
 }
+
+.popup__input:focus {
+  border-bottom: 4px solid rgb(4, 0, 255);
+}
