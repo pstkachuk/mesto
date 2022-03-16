@@ -4,6 +4,7 @@
   border: 1px solid #fff;
   box-sizing: border-box;
   background-image: url('../../../images/edit-button.svg');
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   margin-left: 18px;

@@ -5,6 +5,7 @@
   border: 2px solid #fff;
   border-radius: 2px;
   background-image: url('../../../images/add-button.svg');
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   margin-left: auto;
