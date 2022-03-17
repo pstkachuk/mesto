@@ -9,12 +9,11 @@ let closeButton = document.querySelector('.popup__close-button');
 
 // открытие/закрытие окна
 function togglePopup() {
-  if (popup.classList.contains('popup_opened')) {
-    //если "попап" открыт - ничего не делать
-  } else {   //в противном случае - заполнить инпуты
+  if (!popup.classList.contains('popup_opened')) {
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
   }
+  
   popup.classList.toggle('popup_opened');
 }
 //
