@@ -28,7 +28,7 @@
 
       <section class="elements">
         <ul class="elements__list">
-          <li class="elements__list-item">
+          <!-- <li class="elements__list-item">
             <div class="element">
               <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
               <div class="element__caption-container">
@@ -81,7 +81,7 @@
                 <button type="button" class="element__like-button" aria-label="поставить лайк"></button>
               </div>
             </div>
-          </li>
+          </li> -->
         </ul>
       </section>
     </main>
@@ -101,6 +101,30 @@
         </form>
       </div>
     </div>
+
+    <div class="popup new-place">
+      <div class="popup__container">
+        <h2 class="popup__form-title">Новое место</h2>
+        <button type="button" class="popup__close-button" aria-label="закрыть окно"></button>
+        <form class="popup__form" name="new-place">
+          <input type="text" name="name" id="name" class="popup__input" autofocus required>
+          <input type="text" name="info" id="info" class="popup__input" required>
+          <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <template class="template">
+      <li class="elements__list-item">
+        <div class="element">
+          <img src="" alt="" class="element__image">
+          <div class="element__caption-container">
+            <h2 class="element__caption"></h2>
+            <button type="button" class="element__like-button" aria-label="поставить лайк"></button>
+          </div>
+        </div>
+      </li>
+    </template>
 
   </div>
   <script src="./scripts/index.js"></script>
