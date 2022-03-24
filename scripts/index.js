@@ -10,6 +10,8 @@ let addButton = document.querySelector('.profile__add-button');
 let newCardCloseButton = document.querySelector('.new-card__close-button');
 let formNewCard = document.querySelector('.new-card__form');
 let newCardPopup = document.querySelector('.new-card');
+let placeInput = document.getElementById('place');
+let linkInput = document.getElementById('link');
 const initialCards = [
   {
     name: 'Архыз',
@@ -49,7 +51,6 @@ function loadCards() { //при загрузке страницы добавля
   }
 }
 
-
 function togglePopup() { // открытие/закрытие окна профиля
   if (!popup.classList.contains('popup_opened')) {
     nameInput.value = profileName.textContent;
@@ -60,16 +61,26 @@ function togglePopup() { // открытие/закрытие окна проф�
 
 function toggleNewCardPopup() { //открытие/закрытие окна добавления новой карточки
   newCardPopup.classList.toggle('popup_opened');
+  placeInput.value = '';
+  linkInput.value = '';
 }
 
-//сохранение введенных данных
 function formSubmitHandler (evt) {  //функция отправки формы и сохранения введенных данных
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileInfo.textContent = jobInput.value;
   togglePopup();
 }
-//
+
+function formNewCardHandler (evt) { //добавление новой карточки
+  evt.preventDefault();
+  const elements = cardTemplate.querySelector('.elements__list-item').cloneNode(true);
+  elements.querySelector('.element__caption').textContent = placeInput.value;
+  elements.querySelector('.element__image').src = linkInput.value;
+  elementsList.prepend(elements);
+  toggleNewCardPopup();
+}
+
 
 loadCards();
 formElement.addEventListener('submit', formSubmitHandler);
@@ -77,3 +88,4 @@ editButton.addEventListener('click', togglePopup);
 closeButton.addEventListener('click', togglePopup);
 addButton.addEventListener('click', toggleNewCardPopup);
 newCardCloseButton.addEventListener('click', toggleNewCardPopup);
+formNewCard.addEventListener('submit', formNewCardHandler);
