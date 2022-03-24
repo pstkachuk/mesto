@@ -102,14 +102,14 @@
       </div>
     </div>
 
-    <div class="popup new-place">
+    <div class="popup new-card">
       <div class="popup__container">
         <h2 class="popup__form-title">Новое место</h2>
-        <button type="button" class="popup__close-button" aria-label="закрыть окно"></button>
-        <form class="popup__form" name="new-place">
-          <input type="text" name="name" id="name" class="popup__input" autofocus required>
-          <input type="text" name="info" id="info" class="popup__input" required>
-          <button type="submit" class="popup__submit-button">Сохранить</button>
+        <button type="button" class="popup__close-button new-card__close-button" aria-label="закрыть окно"></button>
+        <form class="popup__form new-card__form" name="new-card">
+          <input type="text" name="place" id="place" class="popup__input" autofocus required placeholder="Название">
+          <input type="text" name="link" id="link" class="popup__input" required placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__submit-button new-card__submit-button">Создать</button>
         </form>
       </div>
     </div>

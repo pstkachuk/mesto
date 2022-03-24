@@ -6,6 +6,10 @@ let profileInfo = document.querySelector('.profile__subtitle');
 let popup = document.querySelector('.popup');
 let editButton = document.querySelector('.profile__edit-button');
 let closeButton = document.querySelector('.popup__close-button');
+let addButton = document.querySelector('.profile__add-button');
+let newCardCloseButton = document.querySelector('.new-card__close-button');
+let formNewCard = document.querySelector('.new-card__form');
+let newCardPopup = document.querySelector('.new-card');
 const initialCards = [
   {
     name: 'Архыз',
@@ -45,16 +49,18 @@ function loadCards() { //при загрузке страницы добавля
   }
 }
 
-// открытие/закрытие окна
-function togglePopup() {
+
+function togglePopup() { // открытие/закрытие окна профиля
   if (!popup.classList.contains('popup_opened')) {
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
   }
-
   popup.classList.toggle('popup_opened');
 }
-//
+
+function toggleNewCardPopup() { //открытие/закрытие окна добавления новой карточки
+  newCardPopup.classList.toggle('popup_opened');
+}
 
 //сохранение введенных данных
 function formSubmitHandler (evt) {  //функция отправки формы и сохранения введенных данных
@@ -64,7 +70,10 @@ function formSubmitHandler (evt) {  //функция отправки формы
   togglePopup();
 }
 //
+
 loadCards();
 formElement.addEventListener('submit', formSubmitHandler);
 editButton.addEventListener('click', togglePopup);
 closeButton.addEventListener('click', togglePopup);
+addButton.addEventListener('click', toggleNewCardPopup);
+newCardCloseButton.addEventListener('click', toggleNewCardPopup);
