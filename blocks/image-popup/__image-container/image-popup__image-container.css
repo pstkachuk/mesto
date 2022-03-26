@@ -1,3 +1,4 @@
 .image-popup__image-container {
   margin: 0;
+  max-height: 75vh;
 }

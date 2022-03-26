@@ -1,3 +1,4 @@
 .image-popup__image {
   width: 100%;
+  max-height: inherit;
 }
