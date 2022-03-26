@@ -54,7 +54,7 @@ function loadCards() { //при загрузке страницы добавля
     element.querySelector('.element__image').alt = initialCards[i].name;
     element.querySelector('.element__caption').textContent = initialCards[i].name;
     elementsList.append(element);
-    element.querySelector('.element__image').addEventListener('click', toggleImagePopup);
+    element.querySelector('.element__image').addEventListener('click', openImagePopup);
     element.querySelector('.element__like-button').addEventListener('click', like);
     element.querySelector('.element__delete-button').addEventListener('click', function() {
       element.remove();
@@ -91,7 +91,7 @@ function formNewCardHandler (evt) { //добавление новой карто
   element.querySelector('.element__image').alt = placeInput.value;
   elementsList.prepend(element);
   toggleNewCardPopup();
-  element.querySelector('.element__image').addEventListener('click', toggleImagePopup);
+  element.querySelector('.element__image').addEventListener('click', openImagePopup);
   element.querySelector('.element__like-button').addEventListener('click', like);
   element.querySelector('.element__delete-button').addEventListener('click', function() {
     element.remove();
@@ -102,11 +102,15 @@ function like(event) { //поставить лайк
   event.target.classList.toggle('element__like-button_active');
 }
 
-function toggleImagePopup(event) { //открыть/закрыть изображение
+function openImagePopup(event) { //открыть/закрыть изображение
   image.src = event.target.src;
   imageCaption.textContent = event.target.alt;
-  imagePopup.classList.toggle('popup_opened');
+  imagePopup.classList.add('popup_opened');
 }
+
+function closeImagePopup() {
+  imagePopup.classList.remove('popup_opened');
+};
 
 loadCards();
 formElement.addEventListener('submit', formSubmitHandler);
@@ -115,4 +119,4 @@ closeButton.addEventListener('click', togglePopup);
 addButton.addEventListener('click', toggleNewCardPopup);
 newCardCloseButton.addEventListener('click', toggleNewCardPopup);
 formNewCard.addEventListener('submit', formNewCardHandler);
-imagePopupCloseButton.addEventListener('click', toggleImagePopup);
+imagePopupCloseButton.addEventListener('click', closeImagePopup);
