@@ -12,6 +12,10 @@ let formNewCard = document.querySelector('.new-card__form');
 let newCardPopup = document.querySelector('.new-card');
 let placeInput = document.getElementById('place');
 let linkInput = document.getElementById('link');
+let imagePopup = document.querySelector('.image-popup');
+let imagePopupCloseButton = document.querySelector('.image-popup__close-button');
+let image = document.querySelector('.image-popup__image');
+let imageCaption = document.querySelector('.image-popup__caption');
 
 const initialCards = [
   {
@@ -41,7 +45,6 @@ const initialCards = [
 ];
 const cardTemplate = document.querySelector('.template').content;
 const elementsList = document.querySelector('.elements__list');
-const deleteButton = cardTemplate.querySelector('.element__delete-button');
 
 
 function loadCards() { //при загрузке страницы добавляет 6 карточек
@@ -51,10 +54,11 @@ function loadCards() { //при загрузке страницы добавля
     element.querySelector('.element__image').alt = initialCards[i].name;
     element.querySelector('.element__caption').textContent = initialCards[i].name;
     elementsList.append(element);
+    element.querySelector('.element__image').addEventListener('click', toggleImagePopup);
     element.querySelector('.element__like-button').addEventListener('click', like);
     element.querySelector('.element__delete-button').addEventListener('click', function() {
       element.remove();
-    } )
+    } );
   }
 }
 
@@ -84,8 +88,10 @@ function formNewCardHandler (evt) { //добавление новой карто
   const element = cardTemplate.querySelector('.elements__list-item').cloneNode(true);
   element.querySelector('.element__caption').textContent = placeInput.value;
   element.querySelector('.element__image').src = linkInput.value;
+  element.querySelector('.element__image').alt = placeInput.value;
   elementsList.prepend(element);
   toggleNewCardPopup();
+  element.querySelector('.element__image').addEventListener('click', toggleImagePopup);
   element.querySelector('.element__like-button').addEventListener('click', like);
   element.querySelector('.element__delete-button').addEventListener('click', function() {
     element.remove();
@@ -93,8 +99,13 @@ function formNewCardHandler (evt) { //добавление новой карто
 }
 
 function like(event) { //поставить лайк
-  console.log(event);
   event.target.classList.toggle('element__like-button_active');
+}
+
+function toggleImagePopup(event) { //открыть/закрыть изображение
+  image.src = event.target.src;
+  imageCaption.textContent = event.target.alt;
+  imagePopup.classList.toggle('popup_opened');
 }
 
 loadCards();
@@ -104,3 +115,4 @@ closeButton.addEventListener('click', togglePopup);
 addButton.addEventListener('click', toggleNewCardPopup);
 newCardCloseButton.addEventListener('click', toggleNewCardPopup);
 formNewCard.addEventListener('submit', formNewCardHandler);
+imagePopupCloseButton.addEventListener('click', toggleImagePopup);
