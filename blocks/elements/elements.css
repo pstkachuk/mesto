@@ -1,6 +1,7 @@
 .elements {
   max-width: calc(100% - 200px * 2);
   margin: 0 auto;
+  min-height: 45vh;
 }
 
 @media screen and (max-width: 1279px) {
