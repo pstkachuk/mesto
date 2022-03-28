@@ -71,29 +71,31 @@ function loadCards() { //при загрузке страницы добавля
 }
 
 function openPopup(popupName) { // открытие окна
-  if (popupName === popup) {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileInfo.textContent;
-  }
-    popupName.classList.add('popup_opened');
+  popupName.classList.add('popup_opened');
 }
 
 function closePopup(popupName) { //закрытие окна
-  if (popupName === newCardPopup) {
-    placeInput.value = '';
-    linkInput.value = '';
-  }
   popupName.classList.remove('popup_opened');
 }
 
-function formSubmitHandler (evt) {  //функция отправки формы и сохранения введенных данных
+function clearNewCardInputs() { //очистить инпуты формы добавления карточки
+  placeInput.value = '';
+  linkInput.value = '';
+}
+
+function loadUserInfo() { //заполнить инпуты формы данными со страницы
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileInfo.textContent;
+}
+
+function handleEditUserForm (evt) {  //функция отправки формы и сохранения введенных данных
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileInfo.textContent = jobInput.value;
   closePopup(popup);
 }
 
-function formNewCardHandler (evt) { //добавление новой карточки
+function handleAddCard (evt) { //добавление новой карточки
   evt.preventDefault();
   const element = createCard(placeInput.value, linkInput.value);
   elementsList.prepend(element);
@@ -113,10 +115,12 @@ function openImagePopup(name, link) { //открыть изображение
 }
 
 loadCards();
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', handleEditUserForm);
 editButton.addEventListener('click', function() {openPopup(popup)});
+editButton.addEventListener('click', loadUserInfo);
 addButton.addEventListener('click', function() {openPopup(newCardPopup)});
+addButton.addEventListener('click', clearNewCardInputs);
 closeButton.addEventListener('click', function() {closePopup(popup)});
 newCardCloseButton.addEventListener('click', function() {closePopup(newCardPopup)});
-formNewCard.addEventListener('submit', formNewCardHandler);
+formNewCard.addEventListener('submit', handleAddCard);
 imagePopupCloseButton.addEventListener('click', function() {closePopup(imagePopup)});
