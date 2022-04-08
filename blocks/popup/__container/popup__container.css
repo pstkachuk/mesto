@@ -5,6 +5,7 @@
     border-radius: 10px;
     box-sizing: border-box;
     position: relative;
+    cursor: default;
 }
 
 @media screen and (max-width: 550px) {

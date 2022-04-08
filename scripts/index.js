@@ -3,7 +3,6 @@ const nameInput = document.getElementById('name');
 const jobInput = document.getElementById('info');
 const profileName = document.querySelector('.profile__title');
 const profileInfo = document.querySelector('.profile__subtitle');
-const popup = document.querySelector('.popup');
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-button');
 const addButton = document.querySelector('.profile__add-button');
@@ -44,6 +43,7 @@ const initialCards = [
 ];
 const cardTemplate = document.querySelector('.template').content;
 const elementsList = document.querySelector('.elements__list');
+const profilePopup = document.querySelector('.profile-popup');
 
 function createCard(cardName, cardLink) { //создание карточки
   const element = cardTemplate.querySelector('.elements__list-item').cloneNode(true);
@@ -92,7 +92,7 @@ function handleEditUserForm (evt) {  //функция отправки форм�
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileInfo.textContent = jobInput.value;
-  closePopup(popup);
+  closePopup(profilePopup);
 }
 
 function handleAddCard (evt) { //добавление новой карточки
@@ -116,11 +116,14 @@ function openImagePopup(name, link) { //открыть изображение
 
 loadCards();
 formElement.addEventListener('submit', handleEditUserForm);
-editButton.addEventListener('click', function() {openPopup(popup)});
+editButton.addEventListener('click', function() {openPopup(profilePopup)});
 editButton.addEventListener('click', loadUserInfo);
 addButton.addEventListener('click', function() {openPopup(newCardPopup)});
 addButton.addEventListener('click', clearNewCardInputs);
-closeButton.addEventListener('click', function() {closePopup(popup)});
+closeButton.addEventListener('click', function() {closePopup(profilePopup)});
 newCardCloseButton.addEventListener('click', function() {closePopup(newCardPopup)});
 formNewCard.addEventListener('submit', handleAddCard);
 imagePopupCloseButton.addEventListener('click', function() {closePopup(imagePopup)});
+profilePopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
+newCardPopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
+imagePopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
