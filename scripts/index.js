@@ -44,6 +44,7 @@ const initialCards = [
 const cardTemplate = document.querySelector('.template').content;
 const elementsList = document.querySelector('.elements__list');
 const profilePopup = document.querySelector('.profile-popup');
+const popups = document.querySelectorAll('.popup');
 
 function createCard(cardName, cardLink) { //создание карточки
   const element = cardTemplate.querySelector('.elements__list-item').cloneNode(true);
@@ -127,3 +128,10 @@ imagePopupCloseButton.addEventListener('click', function() {closePopup(imagePopu
 profilePopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
 newCardPopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
 imagePopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
+document.addEventListener('keydown', function(evt) { //закрыть любое окно клавишей Esc
+  if (evt.key === 'Escape') {
+    popups.forEach(function(item) {
+      closePopup(item);
+    })
+  }
+});
