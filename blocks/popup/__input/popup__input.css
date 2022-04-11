@@ -4,6 +4,8 @@
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   padding: 0;
   padding-bottom: 13px;
+  padding-left: 5px;
+  padding-top: 13px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -13,10 +15,10 @@
   transition: border-bottom .2s linear;
 }
 
-.popup__input:first-of-type {
-  margin-bottom: 30px;
+.popup__input:nth-of-type(2) {
+  margin-top: 30px;
 }
 
 .popup__input:focus {
-  border-bottom: 4px solid rgb(4, 0, 255);
+  outline: 2px solid rgba(4, 0, 255, .4);
 }

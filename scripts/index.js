@@ -1,4 +1,3 @@
-const formElement = document.querySelector('.popup__form');
 const nameInput = document.getElementById('name');
 const jobInput = document.getElementById('info');
 const profileName = document.querySelector('.profile__title');
@@ -9,6 +8,7 @@ const addButton = document.querySelector('.profile__add-button');
 const newCardCloseButton = document.querySelector('.new-card__close-button');
 const formNewCard = document.querySelector('.new-card__form');
 const newCardPopup = document.querySelector('.new-card');
+const newCardButton = document.querySelector('.new-card__submit-button');
 const placeInput = document.getElementById('place');
 const linkInput = document.getElementById('link');
 const imagePopup = document.querySelector('.image-popup');
@@ -44,7 +44,8 @@ const initialCards = [
 const cardTemplate = document.querySelector('.template').content;
 const elementsList = document.querySelector('.elements__list');
 const profilePopup = document.querySelector('.profile-popup');
-const popups = document.querySelectorAll('.popup');
+const formProfile = document.querySelector('.profile-popup__form');
+const profileFormButton = document.querySelector('.popup__submit-button');
 
 function createCard(cardName, cardLink) { //создание карточки
   const element = cardTemplate.querySelector('.elements__list-item').cloneNode(true);
@@ -73,15 +74,16 @@ function loadCards() { //при загрузке страницы добавля
 
 function openPopup(popupName) { // открытие окна
   popupName.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
 }
 
 function closePopup(popupName) { //закрытие окна
   popupName.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
 }
 
-function clearNewCardInputs() { //очистить инпуты формы добавления карточки
-  placeInput.value = '';
-  linkInput.value = '';
+function resetForm(formElement) { //очистить форму
+  formElement.reset();
 }
 
 function loadUserInfo() { //заполнить инпуты формы данными со страницы
@@ -112,26 +114,31 @@ function openImagePopup(name, link) { //открыть изображение
     image.src = link;
     imageCaption.textContent = name;
     openPopup(imagePopup);
-  }
-}
+  };
+};
+
+function closePopupByEsc (evt) { //закрыть окно клавишей ESC
+  if (evt.key === 'Escape') {
+    const currentPopup = document.querySelector('.popup_opened');
+    closePopup(currentPopup);
+  };
+};
 
 loadCards();
-formElement.addEventListener('submit', handleEditUserForm);
+formProfile.addEventListener('submit', handleEditUserForm);
 editButton.addEventListener('click', function() {openPopup(profilePopup)});
 editButton.addEventListener('click', loadUserInfo);
 addButton.addEventListener('click', function() {openPopup(newCardPopup)});
-addButton.addEventListener('click', clearNewCardInputs);
+addButton.addEventListener('click', function() {resetForm(formNewCard)});
 closeButton.addEventListener('click', function() {closePopup(profilePopup)});
+closeButton.addEventListener('click', () => {clearErrorMessages(formProfile)}); //очистить сообщения об ошибках при закрытии формы
+closeButton.addEventListener('click', () => {setButtonEnabled(profileFormButton)}); // разблокировать кнопку отправки после закрытия невалидной формы
 newCardCloseButton.addEventListener('click', function() {closePopup(newCardPopup)});
+newCardCloseButton.addEventListener('click', () => {setButtonDisabled(newCardButton)});
+newCardCloseButton.addEventListener('click', () => {clearErrorMessages(formNewCard)});
 formNewCard.addEventListener('submit', handleAddCard);
+formNewCard.addEventListener('submit', () => {setButtonDisabled(newCardButton)});
 imagePopupCloseButton.addEventListener('click', function() {closePopup(imagePopup)});
-profilePopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
-newCardPopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
-imagePopup.addEventListener('click', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
-document.addEventListener('keydown', function(evt) { //закрыть любое окно клавишей Esc
-  if (evt.key === 'Escape') {
-    popups.forEach(function(item) {
-      closePopup(item);
-    })
-  }
-});
+profilePopup.addEventListener('mousedown', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
+newCardPopup.addEventListener('mousedown', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
+imagePopup.addEventListener('mousedown', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
