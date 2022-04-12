@@ -4,7 +4,7 @@ const profileName = document.querySelector('.profile__title');
 const profileInfo = document.querySelector('.profile__subtitle');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const buttonCloseProfile = document.querySelector('.popup__close-button');
-const buttonNewCarsAdd = document.querySelector('.profile__add-button');
+const buttonNewCardsAdd = document.querySelector('.profile__add-button');
 const buttonNewCardClose = document.querySelector('.new-card__close-button');
 const formNewCard = document.querySelector('.new-card__form');
 const newCardPopup = document.querySelector('.new-card');
@@ -125,20 +125,40 @@ function closePopupByEsc (evt) { //закрыть окно клавишей ESC
   };
 };
 
+function setButtonEditProfileListeners() {
+  openPopup(profilePopup);
+  loadUserInfo();
+};
+
+function setButtonNewCardListeners() {
+  openPopup(newCardPopup);
+  resetForm(formNewCard);
+};
+
+function setButtonCloseProfileListeners() {
+  closePopup(profilePopup);
+  clearErrorMessages(formProfile); //очистить сообщения об ошибках при закрытии формы
+  setButtonEnabled(buttonProfileSubmit); // разблокировать кнопку отправки после закрытия невалидной формы
+};
+
+function setButtonNewCardCloseListeners() {
+  closePopup(newCardPopup);
+  clearErrorMessages(formNewCard);
+  setButtonDisabled(buttonNewCardSubmit);
+};
+
+function setFormNewCardListeners(evt) {
+  handleAddCard(evt);
+  setButtonDisabled(buttonNewCardSubmit);
+};
+
 loadCards();
 formProfile.addEventListener('submit', handleEditUserForm);
-buttonEditProfile.addEventListener('click', function() {openPopup(profilePopup)});
-buttonEditProfile.addEventListener('click', loadUserInfo);
-buttonNewCarsAdd.addEventListener('click', function() {openPopup(newCardPopup)});
-buttonNewCarsAdd.addEventListener('click', function() {resetForm(formNewCard)});
-buttonCloseProfile.addEventListener('click', function() {closePopup(profilePopup)});
-buttonCloseProfile.addEventListener('click', () => {clearErrorMessages(formProfile)}); //очистить сообщения об ошибках при закрытии формы
-buttonCloseProfile.addEventListener('click', () => {setButtonEnabled(buttonProfileSubmit)}); // разблокировать кнопку отправки после закрытия невалидной формы
-buttonNewCardClose.addEventListener('click', function() {closePopup(newCardPopup)});
-buttonNewCardClose.addEventListener('click', () => {setButtonDisabled(buttonNewCardSubmit)});
-buttonNewCardClose.addEventListener('click', () => {clearErrorMessages(formNewCard)});
-formNewCard.addEventListener('submit', handleAddCard);
-formNewCard.addEventListener('submit', () => {setButtonDisabled(buttonNewCardSubmit)});
+buttonEditProfile.addEventListener('click', setButtonEditProfileListeners);
+buttonNewCardsAdd.addEventListener('click', setButtonNewCardListeners);
+buttonCloseProfile.addEventListener('click', setButtonCloseProfileListeners);
+buttonNewCardClose.addEventListener('click', setButtonNewCardCloseListeners);
+formNewCard.addEventListener('submit', setFormNewCardListeners);
 buttonImagePopupClose.addEventListener('click', function() {closePopup(imagePopup)});
 profilePopup.addEventListener('mousedown', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
 newCardPopup.addEventListener('mousedown', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
