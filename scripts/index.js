@@ -112,6 +112,7 @@ function like(event) { //поставить лайк
 function openImagePopup(name, link) { //открыть изображение
   return function() {
     image.src = link;
+    image.alt = name;
     imageCaption.textContent = name;
     openPopup(imagePopup);
   };
