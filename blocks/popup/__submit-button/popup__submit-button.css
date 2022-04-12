@@ -8,7 +8,7 @@
   min-height: 50px;
   cursor: pointer;
   border-radius: 2px;
-  margin-top: 48px;
+  margin-top: 19px;
   padding: 0;
   border: 0;
   transition: opacity .2s linear;
@@ -22,6 +22,6 @@
   .popup__submit-button {
     min-height: 46px;
     font-size: 14px;
-    margin-top: 45px;
+    margin-top: 15px;
   }
 }
