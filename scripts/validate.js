@@ -31,11 +31,7 @@ function isValid(formElement, formInput) { //проверка валидност
 
 function setEventListeners(formElement) { //установить слушатель всем полям формы
   const inputList = Array.from(formElement.querySelectorAll(validateOptions.inputSelector));
-  const buttonElement = formElement.querySelector(validateOptions.submitButtonSelector);
-  if (formElement === formNewCard) { // если открыто окно добавления новой карточки - заблокировать кнопку
-    setButtonDisabled(buttonElement);
-  };
-
+  const buttonElement = formElement.querySelector(validateOptions.submitButtonSelector);  
   inputList.forEach(function(listItem) {
     listItem.addEventListener('input', function() {
       isValid(formElement, listItem);
@@ -63,17 +59,21 @@ function hasInvalidInput(inputList) {// проверка валидности в
 function toggleButtonState(inputList, buttonElement) { //переключает состояние кнопки
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(validateOptions.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', true);
   } else {
     buttonElement.classList.remove(validateOptions.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   };
 };
 
 function setButtonDisabled(buttonElement) { //отключить кнопку
   buttonElement.classList.add(validateOptions.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
 };
 
 function setButtonEnabled(buttonElement) { //активировать кнопку
   buttonElement.classList.remove(validateOptions.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
 };
 
 function clearErrorMessages(formElement) { //скрыть сообщение об ошибке

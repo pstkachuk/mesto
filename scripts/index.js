@@ -130,9 +130,10 @@ function setButtonEditProfileListeners() {
   loadUserInfo();
 };
 
-function setButtonNewCardListeners() {
+function setButtonNewCardAddListeners() {
   openPopup(newCardPopup);
   resetForm(formNewCard);
+  setButtonDisabled(buttonNewCardSubmit);
 };
 
 function setButtonCloseProfileListeners() {
@@ -155,7 +156,7 @@ function setFormNewCardListeners(evt) {
 loadCards();
 formProfile.addEventListener('submit', handleEditUserForm);
 buttonEditProfile.addEventListener('click', setButtonEditProfileListeners);
-buttonNewCardsAdd.addEventListener('click', setButtonNewCardListeners);
+buttonNewCardsAdd.addEventListener('click', setButtonNewCardAddListeners);
 buttonCloseProfile.addEventListener('click', setButtonCloseProfileListeners);
 buttonNewCardClose.addEventListener('click', setButtonNewCardCloseListeners);
 formNewCard.addEventListener('submit', setFormNewCardListeners);
