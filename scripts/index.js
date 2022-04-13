@@ -129,22 +129,22 @@ function setButtonEditProfileListeners() {
   openPopup(profilePopup);
   loadUserInfo();
   setButtonEnabled(buttonProfileSubmit, validateConfig.inactiveButtonClass); // разблокировать кнопку отправки после закрытия невалидной формы
+  clearErrorMessages(formProfile);
 };
 
 function setButtonNewCardAddListeners() {
   openPopup(newCardPopup);
   resetForm(formNewCard);
   setButtonDisabled(buttonNewCardSubmit, validateConfig.inactiveButtonClass);
+  clearErrorMessages(formNewCard);
 };
 
 function setButtonCloseProfileListeners() {
   closePopup(profilePopup);
-  clearErrorMessages(formProfile); //очистить сообщения об ошибках при закрытии формы  
 };
 
 function setButtonNewCardCloseListeners() {
   closePopup(newCardPopup);
-  clearErrorMessages(formNewCard);
   setButtonDisabled(buttonNewCardSubmit, validateConfig.inactiveButtonClass);
 };
 
