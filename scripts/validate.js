@@ -1,4 +1,4 @@
-const validateOptions = { //настройки валидации
+const validateConfig = { //настройки валидации
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
@@ -7,35 +7,35 @@ const validateOptions = { //настройки валидации
   errorClass: 'popup__input-error_visible'
 };
 
-function showInputError(formElement, formInput, errorMessage) { //показать ошибку
+function showInputError(formElement, formInput, errorMessage, validateOptions) { //показать ошибку
   const errorElement = formElement.querySelector(`.${formInput.id}-error`);
   formInput.classList.add(validateOptions.inputErrorClass);
   errorElement.classList.add(validateOptions.errorClass);
   errorElement.textContent = errorMessage;
 };
 
-function hideInputError(formElement, formInput) { //скрыть ошибку
+function hideInputError(formElement, formInput, validateOptions) { //скрыть ошибку
   const errorElement = formElement.querySelector(`.${formInput.id}-error`);
   formInput.classList.remove(validateOptions.inputErrorClass);
   errorElement.classList.remove(validateOptions.errorClass);
   errorElement.textContent = '';
 };
 
-function isValid(formElement, formInput) { //проверка валидности поля
+function isValid(formElement, formInput, validateOptions) { //проверка валидности поля
   if (!formInput.validity.valid) {
-    showInputError(formElement, formInput, formInput.validationMessage);
+    showInputError(formElement, formInput, formInput.validationMessage, validateOptions);
   } else {
-    hideInputError(formElement, formInput);
+    hideInputError(formElement, formInput, validateOptions);
   }
 };
 
-function setEventListeners(formElement) { //установить слушатель всем полям формы
+function setEventListeners(formElement, validateOptions) { //установить слушатель всем полям формы
   const inputList = Array.from(formElement.querySelectorAll(validateOptions.inputSelector));
   const buttonElement = formElement.querySelector(validateOptions.submitButtonSelector);  
   inputList.forEach(function(listItem) {
     listItem.addEventListener('input', function() {
-      isValid(formElement, listItem);
-      toggleButtonState(inputList, buttonElement);
+      isValid(formElement, listItem, validateOptions);
+      toggleButtonState(inputList, buttonElement, validateOptions);
     });
   });
 };
@@ -46,7 +46,7 @@ function enableValidation(validateOptions) { //включить валидаци
     listItem.addEventListener('submit', function(evt) {
       evt.preventDefault();
     });
-    setEventListeners(listItem);
+    setEventListeners(listItem, validateOptions);
   });
 };
 
@@ -56,36 +56,34 @@ function hasInvalidInput(inputList) {// проверка валидности в
   });
 };
 
-function toggleButtonState(inputList, buttonElement) { //переключает состояние кнопки
+function toggleButtonState(inputList, buttonElement, validateOptions) { //переключает состояние кнопки
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(validateOptions.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    setButtonDisabled(buttonElement, validateOptions.inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(validateOptions.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    setButtonEnabled(buttonElement, validateOptions.inactiveButtonClass);
   };
 };
 
-function setButtonDisabled(buttonElement) { //отключить кнопку
-  buttonElement.classList.add(validateOptions.inactiveButtonClass);
+function setButtonDisabled(buttonElement, validateOptions) { //отключить кнопку
+  buttonElement.classList.add(validateOptions);
   buttonElement.setAttribute('disabled', true);
 };
 
-function setButtonEnabled(buttonElement) { //активировать кнопку
-  buttonElement.classList.remove(validateOptions.inactiveButtonClass);
+function setButtonEnabled(buttonElement, validateOptions) { //активировать кнопку
+  buttonElement.classList.remove(validateOptions);
   buttonElement.removeAttribute('disabled');
 };
 
 function clearErrorMessages(formElement) { //скрыть сообщение об ошибке
   const errorList = Array.from(formElement.querySelectorAll('.popup__input-error'));
-  const errorInputList = formElement.querySelectorAll(validateOptions.inputSelector);
+  const errorInputList = formElement.querySelectorAll(validateConfig.inputSelector);
   errorList.forEach(function(errorListItem) {
-    errorListItem.classList.remove(validateOptions.errorClass);
+    errorListItem.classList.remove(validateConfig.errorClass);
     errorListItem.textContent = '';
   });
   errorInputList.forEach(function(errorInputListItem) {
-    errorInputListItem.classList.remove(validateOptions.inputErrorClass);
+    errorInputListItem.classList.remove(validateConfig.inputErrorClass);
   });
 };
 
-enableValidation(validateOptions);
+enableValidation(validateConfig);

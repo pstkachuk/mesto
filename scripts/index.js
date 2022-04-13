@@ -128,29 +128,35 @@ function closePopupByEsc (evt) { //закрыть окно клавишей ESC
 function setButtonEditProfileListeners() {
   openPopup(profilePopup);
   loadUserInfo();
+  setButtonEnabled(buttonProfileSubmit, validateConfig.inactiveButtonClass); // разблокировать кнопку отправки после закрытия невалидной формы
 };
 
 function setButtonNewCardAddListeners() {
   openPopup(newCardPopup);
   resetForm(formNewCard);
-  setButtonDisabled(buttonNewCardSubmit);
+  setButtonDisabled(buttonNewCardSubmit, validateConfig.inactiveButtonClass);
 };
 
 function setButtonCloseProfileListeners() {
   closePopup(profilePopup);
-  clearErrorMessages(formProfile); //очистить сообщения об ошибках при закрытии формы
-  setButtonEnabled(buttonProfileSubmit); // разблокировать кнопку отправки после закрытия невалидной формы
+  clearErrorMessages(formProfile); //очистить сообщения об ошибках при закрытии формы  
 };
 
 function setButtonNewCardCloseListeners() {
   closePopup(newCardPopup);
   clearErrorMessages(formNewCard);
-  setButtonDisabled(buttonNewCardSubmit);
+  setButtonDisabled(buttonNewCardSubmit, validateConfig.inactiveButtonClass);
 };
 
 function setFormNewCardListeners(evt) {
   handleAddCard(evt);
-  setButtonDisabled(buttonNewCardSubmit);
+  setButtonDisabled(buttonNewCardSubmit, validateConfig.inactiveButtonClass);
+};
+
+function closePopupClickOverlay(evt) { //закрыть окно по клику на оверлей
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  };
 };
 
 loadCards();
@@ -161,6 +167,6 @@ buttonCloseProfile.addEventListener('click', setButtonCloseProfileListeners);
 buttonNewCardClose.addEventListener('click', setButtonNewCardCloseListeners);
 formNewCard.addEventListener('submit', setFormNewCardListeners);
 buttonImagePopupClose.addEventListener('click', function() {closePopup(imagePopup)});
-profilePopup.addEventListener('mousedown', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
-newCardPopup.addEventListener('mousedown', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
-imagePopup.addEventListener('mousedown', function(evt) {closePopup(evt.target)}); //закрытие окна при клике на "оверлей"
+profilePopup.addEventListener('mousedown', closePopupClickOverlay);
+newCardPopup.addEventListener('mousedown', closePopupClickOverlay);
+imagePopup.addEventListener('mousedown', closePopupClickOverlay);
