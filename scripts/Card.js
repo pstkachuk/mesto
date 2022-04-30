@@ -1,10 +1,11 @@
-import { imageCaption, openPopup, image, imagePopup } from "./index.js";
+import { imageCaption, image, imagePopup } from "./index.js";
 
 export class Card {
   constructor(cardName, cardLink, openPopup, templateSelector) {
     this._cardName = cardName;
     this._cardLink = cardLink;
     this._templateSelector = templateSelector;
+    this._openPopup = openPopup;
   }
 
   _getTemplate() {  //выбрать шаблон
@@ -24,7 +25,7 @@ export class Card {
     image.src = this._cardLink;
     image.alt = this._cardName;
     imageCaption.textContent = this._cardName;
-    openPopup(imagePopup);
+    this._openPopup(imagePopup);
   }
 
   _setEventListeners() { //поставить слушатели
