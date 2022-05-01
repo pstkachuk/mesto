@@ -68,7 +68,6 @@ export class FormValidator {
 
   enableValidation() { //включить валидацию формы
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    // const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     const buttonElement = this._form.querySelector(this._submitButtonSelector);
     this._inputList.forEach((listItem) => {
       listItem.addEventListener('input', () => {
