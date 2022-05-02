@@ -18,11 +18,12 @@ export class Card {
   }
 
   _like() { //поставить лайк
-    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+    this._buttonLike.classList.toggle('element__like-button_active');
   }
 
   _removeCard() { //удалить карточку
     this._element.remove();
+    this._element = null;
   }
 
   _openImagePopup() { //открыть попап с изображением
@@ -33,7 +34,7 @@ export class Card {
   }
 
   _setEventListeners() { //поставить слушатели
-    this._element.querySelector('.element__like-button').addEventListener('click', () => {
+    this._buttonLike.addEventListener('click', () => {
       this._like();
     });
     this._element.querySelector('.element__delete-button').addEventListener('click', () => {
@@ -46,6 +47,7 @@ export class Card {
 
   createCard() { //заполнить карточку данными
     this._element = this._getTemplate();
+    this._buttonLike = this._element.querySelector('.element__like-button');
     this._setEventListeners();
 
     this._element.querySelector('.element__image').src = this._cardLink;
