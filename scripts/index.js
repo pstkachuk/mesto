@@ -38,10 +38,14 @@ const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
 
 
 //функции
+function createCard(cardData) {
+  const card = new Card(cardData.name, cardData.link, openPopup, '.template');
+  return card.createCard();
+}
+
 function loadCards(cardsList) { //при загрузке страницы добавляет 6 карточек
   cardsList.forEach((item) => {
-    const card = new Card(item.name, item.link, openPopup, '.template');
-    const cardElement = card.createCard();
+    const cardElement = createCard(item);
     cardsContainer.append(cardElement);
   })
 };
@@ -74,8 +78,11 @@ function handleEditUserForm (evt) {  //функция отправки форм�
 
 function handleAddCard (evt) { //добавление новой карточки
   evt.preventDefault();
-  const card = new Card(placeInput.value, linkInput.value, openPopup, '.template');
-  const cardElement = card.createCard();
+  const dataNewCard = {
+    name: placeInput.value,
+    link: linkInput.value
+  };
+  const cardElement = createCard(dataNewCard);
   cardsContainer.prepend(cardElement);
   closePopup(newCardPopup);
 };
