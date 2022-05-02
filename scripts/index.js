@@ -14,7 +14,6 @@ const buttonNewCardsAdd = document.querySelector('.profile__add-button');
 const buttonNewCardClose = document.querySelector('.new-card__close-button');
 const formNewCard = document.querySelector('.new-card__form');
 const newCardPopup = document.querySelector('.new-card');
-const buttonNewCardSubmit = document.querySelector('.new-card__submit-button');
 const placeInput = document.getElementById('place');
 const linkInput = document.getElementById('link');
 export const imagePopup = document.querySelector('.image-popup');
@@ -24,7 +23,6 @@ export const imageCaption = document.querySelector('.image-popup__caption');
 const cardsContainer = document.querySelector('.elements');
 const profilePopup = document.querySelector('.profile-popup');
 const formProfile = document.querySelector('.profile-popup__form');
-const buttonProfileSubmit = document.querySelector('.popup__submit-button');
 const validateConfig = { //настройки валидации
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
