@@ -60,10 +60,6 @@ function closePopup(popupName) { //закрытие окна
   document.removeEventListener('keydown', closePopupByEsc);
 };
 
-function resetForm(formElement) { //очистить форму
-  formElement.reset();
-};
-
 function loadUserInfo() { //заполнить инпуты формы данными со страницы
   nameInput.value = profileName.textContent;
   infoInput.value = profileInfo.textContent;
@@ -109,7 +105,7 @@ function setButtonEditProfileListeners() {
 
 function setButtonNewCardAddListeners() {
   openPopup(newCardPopup);
-  resetForm(formNewCard);
+  formNewCard.reset();
   formNewCardValidator.setButtonDisabled();
   formNewCardValidator.clearErrorMessages(formNewCard);
 };
