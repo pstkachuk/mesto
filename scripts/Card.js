@@ -1,4 +1,4 @@
-import { imageCaption, image, imagePopup } from "./index.js";
+import { imageCaption, popupImage, imagePopup } from "./index.js";
 
 export class Card {
   constructor(cardName, cardLink, openPopup, templateSelector) {
@@ -27,8 +27,8 @@ export class Card {
   }
 
   _openImagePopup() { //открыть попап с изображением
-    image.src = this._cardLink;
-    image.alt = this._cardName;
+    popupImage.src = this._cardLink;
+    popupImage.alt = this._cardName;
     imageCaption.textContent = this._cardName;
     this._openPopup(imagePopup);
   }

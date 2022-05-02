@@ -18,7 +18,7 @@ const placeInput = document.getElementById('place');
 const linkInput = document.getElementById('link');
 export const imagePopup = document.querySelector('.image-popup');
 const buttonImagePopupClose = document.querySelector('.image-popup__close-button');
-export const image = document.querySelector('.image-popup__image');
+export const popupImage = document.querySelector('.image-popup__image');
 export const imageCaption = document.querySelector('.image-popup__caption');
 const cardsInitial = [
   {
