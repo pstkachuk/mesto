@@ -121,14 +121,14 @@ function closePopupClickOverlay(evt) { //закрыть окно по клику
 function setButtonEditProfileListeners() {
   openPopup(profilePopup);
   loadUserInfo();
-  formProfileValidator.setButtonEnabled(buttonProfileSubmit); // разблокировать кнопку отправки после закрытия невалидной формы
+  formProfileValidator.setButtonEnabled(); // разблокировать кнопку отправки после закрытия невалидной формы
   formProfileValidator.clearErrorMessages(formProfile);
 };
 
 function setButtonNewCardAddListeners() {
   openPopup(newCardPopup);
   resetForm(formNewCard);
-  formNewCardValidator.setButtonDisabled(buttonNewCardSubmit);
+  formNewCardValidator.setButtonDisabled();
   formNewCardValidator.clearErrorMessages(formNewCard);
 };
 
@@ -142,12 +142,12 @@ function setButtonImagePopupCloseListeners() {
 
 function setButtonNewCardCloseListeners() {
   closePopup(newCardPopup);
-  formNewCardValidator.setButtonDisabled(buttonNewCardSubmit);
+  formNewCardValidator.setButtonDisabled();
 };
 
 function setFormNewCardListeners(evt) {
   handleAddCard(evt);
-  formNewCardValidator.setButtonDisabled(buttonNewCardSubmit);
+  formNewCardValidator.setButtonDisabled();
 };
 
 //вызовы функций
