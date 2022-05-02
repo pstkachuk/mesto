@@ -46,7 +46,7 @@ const cardsInitial = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const elementsList = document.querySelector('.elements__list');
+const cardsContainer = document.querySelector('.elements');
 const profilePopup = document.querySelector('.profile-popup');
 const formProfile = document.querySelector('.profile-popup__form');
 const buttonProfileSubmit = document.querySelector('.popup__submit-button');
@@ -59,16 +59,15 @@ const validateConfig = { //настройки валидации
   errorClass: 'popup__input-error_visible'
 };
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
-formProfileValidator.enableValidation();
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
-formNewCardValidator.enableValidation();
+
 
 //функции
 function loadCards(cardsList) { //при загрузке страницы добавляет 6 карточек
   cardsList.forEach((item) => {
     const card = new Card(item.name, item.link, openPopup, '.template');
     const cardElement = card.createCard();
-    elementsList.append(cardElement);
+    cardsContainer.append(cardElement);
   })
 };
 
@@ -102,7 +101,7 @@ function handleAddCard (evt) { //добавление новой карточк�
   evt.preventDefault();
   const card = new Card(placeInput.value, linkInput.value, openPopup, '.template');
   const cardElement = card.createCard();
-  elementsList.prepend(cardElement);
+  cardsContainer.prepend(cardElement);
   closePopup(newCardPopup);
 };
 
@@ -153,6 +152,8 @@ function setFormNewCardListeners(evt) {
 
 //вызовы функций
 loadCards(cardsInitial);
+formNewCardValidator.enableValidation(); //запуск валидации формы
+formProfileValidator.enableValidation();
 
 //слушатели
 formProfile.addEventListener('submit', handleEditUserForm);

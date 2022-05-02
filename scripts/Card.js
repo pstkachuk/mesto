@@ -9,7 +9,7 @@ export class Card {
   }
 
   _getTemplate() {  //выбрать шаблон
-    const cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.elements__list-item').cloneNode(true);
+    const cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
     return cardTemplate;
   }
 

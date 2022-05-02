@@ -39,9 +39,7 @@
       </section>
 
       <section class="elements">
-        <ul class="elements__list">
-
-        </ul>
+        <!-- контейнер для карточек -->
       </section>
     </main>
 
@@ -145,25 +143,23 @@
     </div>
 
     <template class="template">
-      <li class="elements__list-item">
-        <div class="element">
-          <img
-            class="element__image"
-            src="."
-            alt="."
+      <div class="element">
+        <img
+          class="element__image"
+          src="."
+          alt="."
+        >
+        <div class="element__caption-container">
+          <h2 class="element__caption"></h2>
+          <button
+            class="element__like-button"
+            type="button"
+            aria-label="поставить лайк"
           >
-          <div class="element__caption-container">
-            <h2 class="element__caption"></h2>
-            <button
-              class="element__like-button"
-              type="button"
-              aria-label="поставить лайк"
-            >
-            </button>
-          </div>
-          <div class="element__delete-button"></div>
+          </button>
         </div>
-      </li>
+        <div class="element__delete-button"></div>
+      </div>
     </template>
 
   </div>
