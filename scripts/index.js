@@ -97,17 +97,17 @@ function handleClosePopupClickOverlay(evt) { //закрыть окно по кл
 };
 
 function setButtonEditProfileListeners() {
-  openPopup(profilePopup);
   loadUserInfo();
   formProfileValidator.setButtonEnabled(); // разблокировать кнопку отправки после закрытия невалидной формы
   formProfileValidator.clearErrorMessages(formProfile);
+  openPopup(profilePopup);
 };
 
 function setButtonNewCardAddListeners() {
-  openPopup(newCardPopup);
   formNewCard.reset();
   formNewCardValidator.setButtonDisabled();
   formNewCardValidator.clearErrorMessages(formNewCard);
+  openPopup(newCardPopup);
 };
 
 function setButtonCloseProfileListeners() {
