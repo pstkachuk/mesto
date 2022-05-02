@@ -15,15 +15,27 @@
 
     <main>
       <section class="profile">
-        <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
+        <img
+          class="profile__avatar"
+          src="./images/avatar.jpg"
+          alt="Аватар"
+        >
         <div class="profile__profile-info">
           <div class="profile__title-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button" aria-label="редактировать профиль"></button>
+            <button
+              class="profile__edit-button"
+              type="button"
+              aria-label="редактировать профиль">
+            </button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__add-button" aria-label="добавить карточку"></button>
+        <button
+          class="profile__add-button"
+          type="button"
+          aria-label="добавить карточку">
+        </button>
       </section>
 
       <section class="elements">
@@ -40,11 +52,35 @@
     <div class="popup profile-popup">
       <div class="popup__container">
         <h2 class="popup__form-title">Редактировать профиль</h2>
-        <button type="button" class="popup__close-button" aria-label="закрыть окно"></button>
-        <form class="popup__form profile-popup__form" name="profile" novalidate>
-          <input type="text" name="name" id="name" class="popup__input" required minlength="2" maxlength="40">
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="закрыть окно">
+        </button>
+        <form
+          class="popup__form profile-popup__form"
+          name="profile"
+          novalidate
+        >
+          <input
+            class="popup__input"
+            type="text"
+            name="name"
+            id="name"
+            required
+            minlength="2"
+            maxlength="40"
+          >
           <span class="popup__input-error name-error"></span>
-          <input type="text" name="info" id="info" class="popup__input" required minlength="2" maxlength="200">
+          <input
+            class="popup__input"
+            type="text"
+            name="info"
+            id="info"
+            required
+            minlength="2"
+            maxlength="200"
+          >
           <span class="popup__input-error info-error"></span>
           <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>
@@ -54,22 +90,55 @@
     <div class="popup new-card">
       <div class="popup__container">
         <h2 class="popup__form-title">Новое место</h2>
-        <button type="button" class="popup__close-button new-card__close-button" aria-label="закрыть окно"></button>
-        <form class="popup__form new-card__form" name="new-card" novalidate>
-          <input type="text" name="place" id="place" class="popup__input" required placeholder="Название" minlength="2" maxlength="30">
-          <span class="popup__input-error place-error"></span>
-          <input type="url" name="link" id="link" class="popup__input" required placeholder="Ссылка на картинку">
-          <span class="popup__input-error link-error"></span>
-          <button type="submit" class="popup__submit-button new-card__submit-button">Создать</button>
+        <button
+          type="button"
+          class="popup__close-button new-card__close-button"
+          aria-label="закрыть окно"
+        >
+        </button>
+        <form
+          class="popup__form new-card__form"
+          name="new-card"
+          novalidate>
+            <input
+              class="popup__input"
+              type="text"
+              name="place"
+              id="place"
+              required
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+            >
+            <span class="popup__input-error place-error"></span>
+            <input
+              class="popup__input"
+              type="url"
+              name="link"
+              id="link"
+              required
+              placeholder="Ссылка на картинку"
+            >
+            <span class="popup__input-error link-error"></span>
+            <button type="submit" class="popup__submit-button new-card__submit-button">Создать</button>
         </form>
       </div>
     </div>
 
     <div class="popup image-popup">
       <div class="image-popup__container">
-        <button type="button" class="popup__close-button image-popup__close-button" aria-label="закрыть окно"></button>
+        <button
+          class="popup__close-button image-popup__close-button"
+          type="button"
+          aria-label="закрыть окно"
+        >
+        </button>
         <figure class="image-popup__image-container">
-          <img src="." alt="." class="image-popup__image">
+          <img
+            class="image-popup__image"
+            src="."
+            alt="."
+          >
           <figcaption class="image-popup__caption">Архыз</figcaption>
         </figure>
       </div>
@@ -78,10 +147,19 @@
     <template class="template">
       <li class="elements__list-item">
         <div class="element">
-          <img src="." alt="." class="element__image">
+          <img
+            class="element__image"
+            src="."
+            alt="."
+          >
           <div class="element__caption-container">
             <h2 class="element__caption"></h2>
-            <button type="button" class="element__like-button" aria-label="поставить лайк"></button>
+            <button
+              class="element__like-button"
+              type="button"
+              aria-label="поставить лайк"
+            >
+            </button>
           </div>
           <div class="element__delete-button"></div>
         </div>
