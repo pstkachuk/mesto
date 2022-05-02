@@ -52,12 +52,12 @@ function loadCards(cardsList) { //при загрузке страницы до�
 
 function openPopup(popupName) { // открытие окна
   popupName.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByEsc);
+  document.addEventListener('keydown', handleClosePopupByEsc);
 };
 
 function closePopup(popupName) { //закрытие окна
   popupName.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByEsc);
+  document.removeEventListener('keydown', handleClosePopupByEsc);
 };
 
 function loadUserInfo() { //заполнить инпуты формы данными со страницы
@@ -83,14 +83,14 @@ function handleAddCard (evt) { //добавление новой карточк�
   closePopup(newCardPopup);
 };
 
-function closePopupByEsc (evt) { //закрыть окно клавишей ESC
+function handleClosePopupByEsc (evt) { //закрыть окно клавишей ESC
   if (evt.key === 'Escape') {
     const currentPopup = document.querySelector('.popup_opened');
     closePopup(currentPopup);
   };
 };
 
-function closePopupClickOverlay(evt) { //закрыть окно по клику на оверлей
+function handleClosePopupClickOverlay(evt) { //закрыть окно по клику на оверлей
   if (evt.target.classList.contains('popup_opened')) {
     closePopup(evt.target);
   };
@@ -141,6 +141,6 @@ buttonCloseProfile.addEventListener('click', setButtonCloseProfileListeners);
 buttonNewCardClose.addEventListener('click', setButtonNewCardCloseListeners);
 formNewCard.addEventListener('submit', setFormNewCardListeners);
 buttonImagePopupClose.addEventListener('click', setButtonImagePopupCloseListeners);
-profilePopup.addEventListener('mousedown', closePopupClickOverlay);
-newCardPopup.addEventListener('mousedown', closePopupClickOverlay);
-imagePopup.addEventListener('mousedown', closePopupClickOverlay);
+profilePopup.addEventListener('mousedown', handleClosePopupClickOverlay);
+newCardPopup.addEventListener('mousedown', handleClosePopupClickOverlay);
+imagePopup.addEventListener('mousedown', handleClosePopupClickOverlay);
