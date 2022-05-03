@@ -94,34 +94,34 @@ function handleClosePopupClickOverlay(evt) { //закрыть окно по кл
   };
 };
 
-function setButtonEditProfileListeners() {
+function handleOpenEditProfilePopup() {
   loadUserInfo();
   formProfileValidator.setButtonEnabled(); // разблокировать кнопку отправки после закрытия невалидной формы
   formProfileValidator.clearErrorMessages(formProfile);
   openPopup(profilePopup);
 };
 
-function setButtonNewCardAddListeners() {
+function handleOpenNewCardPopup() {
   formNewCard.reset();
   formNewCardValidator.setButtonDisabled();
   formNewCardValidator.clearErrorMessages(formNewCard);
   openPopup(newCardPopup);
 };
 
-function setButtonCloseProfileListeners() {
+function handleCloseEditProfilePopup() {
   closePopup(profilePopup);
 };
 
-function setButtonImagePopupCloseListeners() {
+function handleCloseImagePopup() {
   closePopup(imagePopup);
 }
 
-function setButtonNewCardCloseListeners() {
+function handleCloseNewCardPopup() {
   closePopup(newCardPopup);
   formNewCardValidator.setButtonDisabled();
 };
 
-function setFormNewCardListeners(evt) {
+function handleNewCardForm(evt) {
   handleAddCard(evt);
   formNewCardValidator.setButtonDisabled();
 };
@@ -133,12 +133,12 @@ formProfileValidator.enableValidation();
 
 //слушатели
 formProfile.addEventListener('submit', handleEditUserForm);
-buttonEditProfile.addEventListener('click', setButtonEditProfileListeners);
-buttonNewCardsAdd.addEventListener('click', setButtonNewCardAddListeners);
-buttonCloseProfile.addEventListener('click', setButtonCloseProfileListeners);
-buttonNewCardClose.addEventListener('click', setButtonNewCardCloseListeners);
-formNewCard.addEventListener('submit', setFormNewCardListeners);
-buttonImagePopupClose.addEventListener('click', setButtonImagePopupCloseListeners);
+buttonEditProfile.addEventListener('click', handleOpenEditProfilePopup);
+buttonNewCardsAdd.addEventListener('click', handleOpenNewCardPopup);
+buttonCloseProfile.addEventListener('click', handleCloseEditProfilePopup);
+buttonNewCardClose.addEventListener('click', handleCloseNewCardPopup);
+formNewCard.addEventListener('submit', handleNewCardForm);
+buttonImagePopupClose.addEventListener('click', handleCloseImagePopup);
 profilePopup.addEventListener('mousedown', handleClosePopupClickOverlay);
 newCardPopup.addEventListener('mousedown', handleClosePopupClickOverlay);
 imagePopup.addEventListener('mousedown', handleClosePopupClickOverlay);
