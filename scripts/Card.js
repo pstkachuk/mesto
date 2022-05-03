@@ -40,7 +40,7 @@ export class Card {
     this._element.querySelector('.element__delete-button').addEventListener('click', () => {
       this._removeCard();
     });
-    this._element.querySelector('.element__image').addEventListener('click', () => {
+    this._elementImage.addEventListener('click', () => {
       this._openImagePopup();
     })
   }
@@ -48,12 +48,13 @@ export class Card {
   createCard() { //заполнить карточку данными
     this._element = this._getTemplate();
     this._buttonLike = this._element.querySelector('.element__like-button');
+    this._elementImage = this._element.querySelector('.element__image');
     this._setEventListeners();
 
-    this._element.querySelector('.element__image').src = this._cardLink;
+    this._elementImage.src = this._cardLink;
+    this._elementImage.alt = this._cardName;
     this._element.querySelector('.element__caption').textContent = this._cardName;
 
     return this._element;
   }
 }
-
