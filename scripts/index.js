@@ -1,7 +1,7 @@
 //импорты
 import { Card}  from './Card.js';
 import { FormValidator } from './FormValidator.js';
-import { cardsInitial } from './CardsInitial.js';
+import { cardsInitial } from './cardsInitial.js';
 
 //константы
 const nameInput = document.getElementById('name');
