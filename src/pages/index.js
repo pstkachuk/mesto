@@ -1,37 +1,30 @@
 //импорты
-import { Card}  from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { cardsInitial } from './cardsInitial.js';
-import { Section } from './Section.js';
+import { Card}  from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { cardsInitial } from '../utils/cardsInitial.js';
+import { Section } from '../components/Section.js';
+import {
+  nameInput,
+  infoInput,
+  profileName,
+  profileInfo,
+  buttonEditProfile,
+  buttonCloseProfile,
+  buttonNewCardsAdd,
+  buttonNewCardClose,
+  formNewCard,
+  newCardPopup,
+  placeInput,
+  linkInput,
+  imagePopup,
+  buttonImagePopupClose,
+  cardsContainer,
+  profilePopup,
+  formProfile,
+  validateConfig,
+} from '../utils/constants.js';
 
 //константы
-const nameInput = document.getElementById('name');
-const infoInput = document.getElementById('info');
-const profileName = document.querySelector('.profile__title');
-const profileInfo = document.querySelector('.profile__subtitle');
-const buttonEditProfile = document.querySelector('.profile__edit-button');
-const buttonCloseProfile = document.querySelector('.popup__close-button');
-const buttonNewCardsAdd = document.querySelector('.profile__add-button');
-const buttonNewCardClose = document.querySelector('.new-card__close-button');
-const formNewCard = document.querySelector('.new-card__form');
-const newCardPopup = document.querySelector('.new-card');
-const placeInput = document.getElementById('place');
-const linkInput = document.getElementById('link');
-export const imagePopup = document.querySelector('.image-popup');
-const buttonImagePopupClose = document.querySelector('.image-popup__close-button');
-export const popupImage = document.querySelector('.image-popup__image');
-export const imageCaption = document.querySelector('.image-popup__caption');
-const cardsContainer = document.querySelector('.elements');
-const profilePopup = document.querySelector('.profile-popup');
-const formProfile = document.querySelector('.profile-popup__form');
-const validateConfig = { //настройки валидации
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_visible'
-};
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
 
