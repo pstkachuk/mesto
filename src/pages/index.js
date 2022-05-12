@@ -24,23 +24,25 @@ import {
   validateConfig,
 } from '../utils/constants.js';
 
-//константы
+//создание классов
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
+
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
+
+const cardsList = new Section({ //добавление карточек
+  items: cardsInitial,
+  renderer: (cardItem) => {
+    const cardElement = createCard(cardItem);
+    cardsList.addItemToEnd(cardElement);
+  },
+}, '.elements');
 
 
 //функции
-function createCard(cardData) {
+function createCard(cardData) { //создание карточки
   const card = new Card(cardData.name, cardData.link, openPopup, '.template');
   return card.createCard();
 }
-
-function loadCards(cardsList) { //при загрузке страницы добавляет 6 карточек
-  cardsList.forEach((item) => {
-    const cardElement = createCard(item);
-    cardsContainer.append(cardElement);
-  })
-};
 
 function openPopup(popupName) { // открытие окна
   popupName.classList.add('popup_opened');
@@ -64,14 +66,20 @@ function handleEditUserForm (evt) {  //функция отправки форм�
   closePopup(profilePopup);
 };
 
-function handleAddCard (evt) { //добавление новой карточки
+function handleAddCard (evt) { //добавление новой карточки пользователем
   evt.preventDefault();
-  const dataNewCard = {
+  const dataNewCard = [{
     name: placeInput.value,
     link: linkInput.value
-  };
-  const cardElement = createCard(dataNewCard);
-  cardsContainer.prepend(cardElement);
+  }];
+  const cardElementNew = new Section({
+    items: dataNewCard,
+    renderer: (cardItem) => {
+      const cardElement = createCard(cardItem);
+      cardElementNew.addItemToStart(cardElement);
+    }
+  }, '.elements');
+  cardElementNew.renderItems();
   closePopup(newCardPopup);
 };
 
@@ -121,7 +129,7 @@ function handleNewCardForm(evt) {
 };
 
 //вызовы функций
-loadCards(cardsInitial);
+cardsList.renderItems();
 formNewCardValidator.enableValidation(); //запуск валидации формы
 formProfileValidator.enableValidation();
 
