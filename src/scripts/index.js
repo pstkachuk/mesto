@@ -2,6 +2,7 @@
 import { Card}  from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { cardsInitial } from './cardsInitial.js';
+import { Section } from './Section.js';
 
 //константы
 const nameInput = document.getElementById('name');
