@@ -3,6 +3,7 @@ import { Card}  from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { Popup } from '../components/Popup.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
 import { cardsInitial } from '../utils/cardsInitial.js';
 import {
   nameInput,
@@ -23,6 +24,8 @@ import {
   profilePopup,
   formProfile,
   validateConfig,
+  imageCaption,
+  popupImage,
 } from '../utils/constants.js';
 
 //создание классов
@@ -40,6 +43,11 @@ const cardsList = new Section({ //добавление карточек
 const popupProfileEdit = new Popup(profilePopup);
 popupProfileEdit.setEventListeners();
 buttonEditProfile.addEventListener('click', () => {popupProfileEdit.open()});
+
+
+
+
+
 
 
 //функции
