@@ -5,13 +5,12 @@ export class Popup {
 
   open() {
     this._popupSelector.classList.add('popup_opened');
-    document.addEventListener('keydown', this._handleEscClose);
-    this.setEventListeners();
+    document.addEventListener('keydown', (evt) => {this._handleEscClose(evt)});
   }
 
   close() {
     this._popupSelector.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._handleEscClose);
+    document.removeEventListener('keydown', (evt) => {this._handleEscClose(evt)});
   }
 
   _handleEscClose(evt) {
@@ -20,15 +19,14 @@ export class Popup {
     }
   }
 
-  _handleClosePopupClickOverlay() {
-    if (this._popupSelector.classList.contains('popup_opened')) {
+  _handleClosePopupClickOverlay(evt) { //закрыть окно по клику на оверлей
+    if (evt.target.classList.contains('popup_opened')) {
       this.close();
     }
   }
 
   setEventListeners() {
     this._popupSelector.querySelector('.popup__close-button').addEventListener('click', () => this.close());
-    document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
-    this._popupSelector.addEventListener('mousedown', () => this._handleClosePopupClickOverlay());
+    this._popupSelector.addEventListener('mousedown', (evt) => this._handleClosePopupClickOverlay(evt));
   }
 }
