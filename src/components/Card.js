@@ -40,9 +40,9 @@ export class Card {
     this._element.querySelector('.element__delete-button').addEventListener('click', () => {
       this._removeCard();
     });
-    // this._elementImage.addEventListener('click', () => {     раскомменттировать
-    //   this._openImagePopup();
-    // })
+    this._elementImage.addEventListener('click', () => {
+      this._openImagePopup();
+    })
   }
 
   createCard() { //заполнить карточку данными
