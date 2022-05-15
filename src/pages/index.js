@@ -1,8 +1,9 @@
 //импорты
-import { Card}  from '../components/Card.js';
+import { Card }  from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { Popup } from '../components/Popup.js';
+import { UserInfo } from '../components/UserInfo.js'
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { cardsInitial } from '../utils/cardsInitial.js';
@@ -44,8 +45,7 @@ const cardsList = new Section({ //добавление карточек
 const popupProfileEdit = new PopupWithForm({
   popupSelector: profilePopup,
   handleSubmit: (formData) => {
-    profileName.textContent = formData.name;
-    profileInfo.textContent = formData.info;
+    userInfo.setUserInfo(formData);
     popupProfileEdit.close();
   }
 })
@@ -79,8 +79,19 @@ function handleOpenNewCardPopup() {
 function handleOpenEditProfilePopup() {
   formProfileValidator.setButtonEnabled();
   formProfileValidator.clearErrorMessages(formProfile);
+  const userNewInfo = userInfo.getUserInfo();
+  nameInput.value = userNewInfo.profileName;
+  infoInput.value = userNewInfo.profileInfo;
   popupProfileEdit.open();
 }
+
+const userInfo = new UserInfo({
+  profileName: profileName,
+  profileInfo: profileInfo
+})
+
+
+
 
 
 
@@ -196,7 +207,7 @@ formProfileValidator.enableValidation();
 // buttonCloseProfile.addEventListener('click', handleCloseEditProfilePopup);     удалить
 // buttonNewCardClose.addEventListener('click', handleCloseNewCardPopup);
 // formNewCard.addEventListener('submit', handleNewCardForm);
-buttonImagePopupClose.addEventListener('click', handleCloseImagePopup);
+// buttonImagePopupClose.addEventListener('click', handleCloseImagePopup);
 // profilePopup.addEventListener('mousedown', handleClosePopupClickOverlay);     удалить
 // newCardPopup.addEventListener('mousedown', handleClosePopupClickOverlay);     удалить
 // imagePopup.addEventListener('mousedown', handleClosePopupClickOverlay);     удалить
