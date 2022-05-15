@@ -8,7 +8,7 @@ export class PopupWithImage extends Popup {
   }
 
   open(caption, link) {
-    this._imageCaption.texContent = caption;
+    this._imageCaption.textContent = caption;
     this._image.alt = caption;
     this._image.src = link;
     super.open();

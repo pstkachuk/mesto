@@ -120,31 +120,38 @@ const userInfo = new UserInfo({
 // buttonEditProfile.addEventListener('click', () => {popupProfileEdit.open()});
 
 
-
+const popupWithImage = new PopupWithImage(imagePopup);
+popupWithImage.setEventListeners();
 
 
 
 
 //функции
 function createCard(cardData) { //создание карточки
-  const card = new Card(cardData.place, cardData.link, openPopup, '.template');
+  const card = new Card({
+    cardName: cardData.place,
+    cardLink: cardData.link,
+    handleCardClick: () => {
+      popupWithImage.open(cardData.place, cardData.link);
+    },
+  }, '.template');
   return card.createCard();
 }
 
-function openPopup(popupName) { // открытие окна
-  popupName.classList.add('popup_opened');
-  // document.addEventListener('keydown', handleClosePopupByEsc);
-};
+// function openPopup(popupName) { // открытие окна
+//   popupName.classList.add('popup_opened');
+//   // document.addEventListener('keydown', handleClosePopupByEsc);
+// };
 
 // function closePopup(popupName) { //закрытие окна                     Удалить
 //   popupName.classList.remove('popup_opened');
 //   document.removeEventListener('keydown', handleClosePopupByEsc);
 // };
 
-function loadUserInfo() { //заполнить инпуты формы данными со страницы
-  nameInput.value = profileName.textContent;
-  infoInput.value = profileInfo.textContent;
-};
+// function loadUserInfo() { //заполнить инпуты формы данными со страницы
+//   nameInput.value = profileName.textContent;
+//   infoInput.value = profileInfo.textContent;
+// };
 
 // function handleEditUserForm (evt) {  //функция отправки формы и сохранения введенных данных
 //   evt.preventDefault();
@@ -181,9 +188,9 @@ function loadUserInfo() { //заполнить инпуты формы данн�
 //   closePopup(profilePopup);
 // };
 
-function handleCloseImagePopup() {
-  closePopup(imagePopup);
-}
+// function handleCloseImagePopup() {
+//   closePopup(imagePopup);
+// }
 
 // function handleCloseNewCardPopup() {
 //   // closePopup(newCardPopup);

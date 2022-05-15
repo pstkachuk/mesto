@@ -1,11 +1,9 @@
-import { imageCaption, popupImage, imagePopup } from '../utils/constants.js';
-
 export class Card {
-  constructor(cardName, cardLink, openPopup, templateSelector) {
+  constructor({cardName, cardLink, handleCardClick}, templateSelector) {
     this._cardName = cardName;
     this._cardLink = cardLink;
     this._templateSelector = templateSelector;
-    this._openPopup = openPopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {  //выбрать шаблон
@@ -26,13 +24,6 @@ export class Card {
     this._element = null;
   }
 
-  _openImagePopup() { //открыть попап с изображением
-    popupImage.src = this._cardLink;
-    popupImage.alt = this._cardName;
-    imageCaption.textContent = this._cardName;
-    this._openPopup(imagePopup);
-  }
-
   _setEventListeners() { //поставить слушатели
     this._buttonLike.addEventListener('click', () => {
       this._like();
@@ -41,7 +32,7 @@ export class Card {
       this._removeCard();
     });
     this._elementImage.addEventListener('click', () => {
-      this._openImagePopup();
+      this._handleCardClick();
     })
   }
 
