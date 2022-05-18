@@ -42,15 +42,8 @@ const popupProfileEdit = new PopupWithForm({  //форма редактиров�
 
 const popupNewCardAdd = new PopupWithForm({ //форма для добавления новой карточки
   popupSelector: '.new-card',
-  handleSubmit: (formData) => {
-    const cardItemNew = new Section({
-      items: [formData],
-      renderer: (cardItem) => {
-        const cardElement = createCard(cardItem);
-        cardItemNew.addItemToStart(cardElement);
-      },
-    }, '.elements');
-    cardItemNew.renderItems();
+  handleSubmit: (formData) => {  
+    cardsList.addItemToStart(createCard(formData));
     popupNewCardAdd.close();
   }
 })
