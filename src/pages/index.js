@@ -16,9 +16,6 @@ import {
   buttonEditProfile,
   buttonNewCardsAdd,
   formNewCard,
-  newCardPopup,
-  imagePopup,
-  profilePopup,
   formProfile,
   validateConfig,
 } from '../utils/constants.js';
@@ -27,7 +24,7 @@ import {
 //создание классов
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
-const popupWithImage = new PopupWithImage(imagePopup);
+const popupWithImage = new PopupWithImage('.image-popup');
 
 const cardsList = new Section({ //добавление карточек
   items: cardsInitial,
@@ -38,7 +35,7 @@ const cardsList = new Section({ //добавление карточек
 }, '.elements');
 
 const popupProfileEdit = new PopupWithForm({  //форма редактирования профиля
-  popupSelector: profilePopup,
+  popupSelector: '.profile-popup',
   handleSubmit: (formData) => {
     userInfo.setUserInfo(formData);
     popupProfileEdit.close();
@@ -46,7 +43,7 @@ const popupProfileEdit = new PopupWithForm({  //форма редактиров�
 })
 
 const popupNewCardAdd = new PopupWithForm({ //форма для добавления новой карточки
-  popupSelector: newCardPopup,
+  popupSelector: '.new-card',
   handleSubmit: (formData) => {
     const cardItemNew = new Section({
       items: [formData],
