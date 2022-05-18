@@ -89,13 +89,13 @@ formProfileValidator.enableValidation();
 //обработчики
 function handleOpenNewCardPopup() {
   formNewCardValidator.setButtonDisabled();
-  formNewCardValidator.clearErrorMessages(formNewCard);
+  formNewCardValidator.clearErrorMessages();
   popupNewCardAdd.open()
 };
 
 function handleOpenEditProfilePopup() {
   formProfileValidator.setButtonEnabled();
-  formProfileValidator.clearErrorMessages(formProfile);
+  formProfileValidator.clearErrorMessages();
   const userNewInfo = userInfo.getUserInfo();
   nameInput.value = userNewInfo.profileName;
   infoInput.value = userNewInfo.profileInfo;

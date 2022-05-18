@@ -45,14 +45,9 @@ export class FormValidator {
     }
   }
 
-  clearErrorMessages(formElement) {
-    const errorList = Array.from(formElement.querySelectorAll('.popup__input-error'));
-    errorList.forEach((errorListItem) => {
-      errorListItem.classList.remove(this._errorClass);
-      errorListItem.textContent = '';
-    });
+  clearErrorMessages() {    
     this._inputList.forEach((inputListItem) => {
-      inputListItem.classList.remove(this._inputErrorClass);
+      this._hideInputError(inputListItem);
     })
   }
 
