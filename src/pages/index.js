@@ -11,8 +11,6 @@ import { cardsInitial } from '../utils/cardsInitial.js';
 import {
   nameInput,
   infoInput,
-  profileName,
-  profileInfo,
   buttonEditProfile,
   buttonNewCardsAdd,
   formNewCard,
@@ -58,8 +56,8 @@ const popupNewCardAdd = new PopupWithForm({ //форма для добавлен
 })
 
 const userInfo = new UserInfo({ //данные о пользователе
-  profileName: profileName,
-  profileInfo: profileInfo
+  profileNameSelector: '.profile__title',
+  profileInfoSelector: '.profile__subtitle'
 })
 
 function createCard(cardData) { //создание карточки
@@ -90,12 +88,11 @@ function handleOpenNewCardPopup() {
   popupNewCardAdd.open()
 };
 
-function handleOpenEditProfilePopup() {
-  formProfileValidator.setButtonEnabled();
-  formProfileValidator.clearErrorMessages();
+function handleOpenEditProfilePopup() {  
   const userNewInfo = userInfo.getUserInfo();
   nameInput.value = userNewInfo.profileName;
   infoInput.value = userNewInfo.profileInfo;
+  formProfileValidator.clearErrorMessages();
   popupProfileEdit.open();
 }
 

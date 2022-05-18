@@ -1,7 +1,5 @@
 export const nameInput = document.getElementById('name');
 export const infoInput = document.getElementById('info');
-export const profileName = document.querySelector('.profile__title');
-export const profileInfo = document.querySelector('.profile__subtitle');
 export const buttonEditProfile = document.querySelector('.profile__edit-button');
 export const buttonNewCardsAdd = document.querySelector('.profile__add-button');
 export const formNewCard = document.querySelector('.new-card__form');

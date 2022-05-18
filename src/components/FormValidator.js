@@ -48,7 +48,8 @@ export class FormValidator {
   clearErrorMessages() {    
     this._inputList.forEach((inputListItem) => {
       this._hideInputError(inputListItem);
-    })
+    });
+    this._toggleButtonState();
   }
 
   setButtonEnabled() { //активировать кнопку
