@@ -42,7 +42,7 @@ const popupProfileEdit = new PopupWithForm({  //форма редактиров�
 
 const popupNewCardAdd = new PopupWithForm({ //форма для добавления новой карточки
   popupSelector: '.new-card',
-  handleSubmit: (formData) => {  
+  handleSubmit: (formData) => {
     cardsList.addItemToStart(createCard(formData));
     popupNewCardAdd.close();
   }
@@ -76,12 +76,11 @@ formProfileValidator.enableValidation();
 
 //обработчики
 function handleOpenNewCardPopup() {
-  formNewCardValidator.setButtonDisabled();
   formNewCardValidator.clearErrorMessages();
   popupNewCardAdd.open()
 };
 
-function handleOpenEditProfilePopup() {  
+function handleOpenEditProfilePopup() {
   const userNewInfo = userInfo.getUserInfo();
   nameInput.value = userNewInfo.profileName;
   infoInput.value = userNewInfo.profileInfo;
