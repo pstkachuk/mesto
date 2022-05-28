@@ -141,6 +141,24 @@
       </div>
     </div>
 
+    <div class="popup confirm-popup">
+      <div class="popup__container">
+        <h2 class="popup__form-title confirm-popup__form-title">Вы уверены?</h2>
+        <button
+          type="button"
+          class="popup__close-button confirm-popup__close-button"
+          aria-label="закрыть окно"
+        >
+        </button>
+        <form
+          class="popup__form confirm-popup__form"
+          name="confirm"
+          >
+          <button type="submit" class="popup__submit-button confirm-popup__submit-button">Да</button>
+        </form>
+      </div>
+    </div>
+
     <template class="template">
       <div class="element">
         <img
@@ -157,7 +175,7 @@
               aria-label="поставить лайк"
             >
             </button>
-            <div class="element__likes-counter">0</div>
+            <div class="element__likes-counter"></div>
           </div>
         </div>
         <div class="element__delete-button"></div>

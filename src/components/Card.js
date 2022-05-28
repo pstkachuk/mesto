@@ -1,9 +1,10 @@
 export class Card {
-  constructor({cardName, cardLink, handleCardClick}, templateSelector) {
+  constructor({cardName, cardLink, handleCardClick, handleOpenConfirmPopup}, templateSelector) {
     this._cardName = cardName;
     this._cardLink = cardLink;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleOpenConfirmPopup = handleOpenConfirmPopup; //
   }
 
   _getTemplate() {  //выбрать шаблон
@@ -28,9 +29,7 @@ export class Card {
     this._buttonLike.addEventListener('click', () => {
       this._like();
     });
-    this._element.querySelector('.element__delete-button').addEventListener('click', () => {
-      this._removeCard();
-    });
+    this._element.querySelector('.element__delete-button').addEventListener('click', this._handleOpenConfirmPopup); //
     this._elementImage.addEventListener('click', () => {
       this._handleCardClick();
     })

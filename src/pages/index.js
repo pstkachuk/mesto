@@ -23,6 +23,12 @@ import {
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
 const popupWithImage = new PopupWithImage('.image-popup');
+const popupConfirm = new PopupWithForm({
+  popupSelector: '.confirm-popup',
+  handleSubmit: () => {
+    popupConfirm.close();
+  }
+});
 
 const cardsList = new Section({ //добавление карточек
   items: cardsInitial,
@@ -60,6 +66,9 @@ function createCard(cardData) { //создание карточки
     handleCardClick: () => {
       popupWithImage.open(cardData.place, cardData.link);
     },
+    handleOpenConfirmPopup: () => {
+      popupConfirm.open();
+    }
   }, '.template');
   return card.createCard();
 }
@@ -72,6 +81,7 @@ popupWithImage.setEventListeners();
 cardsList.renderItems();
 formNewCardValidator.enableValidation();
 formProfileValidator.enableValidation();
+popupConfirm.setEventListeners();
 
 
 //обработчики
