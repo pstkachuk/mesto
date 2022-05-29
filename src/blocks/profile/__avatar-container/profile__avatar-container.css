@@ -1,0 +1,28 @@
+.profile__avatar-container {
+  position: relative;
+  margin-right: 30px;
+}
+
+.profile__avatar-container::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+.profile__avatar-container:hover::before {
+  opacity: .8;
+}
+
+@media screen and (max-width: 750px) {
+  .profile__avatar-container {
+    margin: 0;
+    margin-bottom: 26px;
+  }
+}

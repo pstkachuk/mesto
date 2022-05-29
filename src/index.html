@@ -14,11 +14,14 @@
 
     <main>
       <section class="profile">
-        <img
-          class="profile__avatar"
-          src="<%=require('./images/avatar.jpg')%>"
-          alt="Аватар"
-        >
+        <div class="profile__avatar-container">
+          <img
+            class="profile__avatar"
+            src="<%=require('./images/avatar.jpg')%>"
+            alt="Аватар"
+          >
+          <div class="profile__avatar-edit-button"></div>
+        </div>
         <div class="profile__profile-info">
           <div class="profile__title-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -155,6 +158,35 @@
           name="confirm"
           >
           <button type="submit" class="popup__submit-button confirm-popup__submit-button">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup avatar-popup">
+      <div class="popup__container">
+        <h2 class="popup__form-title avatar-popup__form-title">Обновить аватар</h2>
+        <button
+          type="button"
+          class="popup__close-button avatar-popup__close-button"
+          aria-label="закрыть окно"
+        >
+        </button>
+        <form
+          class="popup__form avatar-popup__form"
+          name="avatar"
+          novalidate>
+            <input
+              class="popup__input"
+              type="text"
+              name="avatar-link"
+              id="avatar-link"
+              required
+              placeholder="Ссылка"
+              minlength="2"
+              maxlength="30"
+            >
+            <span class="popup__input-error avatar-link-error"></span>
+            <button type="submit" class="popup__submit-button avatar-popup__submit-button">Сохранить</button>
         </form>
       </div>
     </div>
