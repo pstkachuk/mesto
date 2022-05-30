@@ -38,4 +38,8 @@ export class Api {
     })
     .then(this._requestIsOk);
   }
+
+  addNewCard() {
+
+  }
 }

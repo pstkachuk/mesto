@@ -79,10 +79,12 @@ api.getCards() //загрузка карточек
 const popupProfileEdit = new PopupWithForm({  //форма редактирования профиля
   popupSelector: '.profile-popup',
   handleSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
     api.setUserInfo(formData.name, formData.about)
-      .then((userDataUpdate) => {
-        console.log(userDataUpdate);
+    .then((formDataUpdate) => {
+      userInfo.setUserInfo(formDataUpdate);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     popupProfileEdit.close();
   }
