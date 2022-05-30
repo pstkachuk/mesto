@@ -39,7 +39,15 @@ export class Api {
     .then(this._requestIsOk);
   }
 
-  addNewCard() {
-
+  addNewCard(name, link) {
+    return fetch(this._baseUrl + '/cards', {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link
+      })
+    })
+    .then(this._requestIsOk);
   }
 }

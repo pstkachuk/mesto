@@ -93,7 +93,13 @@ const popupProfileEdit = new PopupWithForm({  //форма редактиров�
 const popupNewCardAdd = new PopupWithForm({ //форма для добавления новой карточки
   popupSelector: '.new-card',
   handleSubmit: (formData) => {
-    cardsList.addItemToStart(createCard(formData).createCard());
+    api.addNewCard(formData.name, formData.link)
+      .then((card) => {
+        cardsList.addItemToStart(createCard(card).createCard());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     popupNewCardAdd.close();
   }
 })
