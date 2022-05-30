@@ -29,7 +29,7 @@ export class Card {
     this._buttonLike.addEventListener('click', () => {
       this._like();
     });
-    this._element.querySelector('.element__delete-button').addEventListener('click', this._handleOpenConfirmPopup); //
+    this._element.querySelector('.element__delete-button').addEventListener('click', this._handleOpenConfirmPopup);
     this._elementImage.addEventListener('click', () => {
       this._handleCardClick();
     })

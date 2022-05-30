@@ -9,7 +9,6 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
 import { Api } from '../components/Api.js';
-import { cardsInitial } from '../utils/cardsInitial.js';
 import {
   nameInput,
   infoInput,
@@ -40,6 +39,13 @@ const api = new Api({
   }
 })
 
+const cardsList = new Section({ //добавление карточек
+  renderer: (cardItem) => {
+    const cardElement = createCard(cardItem).createCard();
+    cardsList.addItemToEnd(cardElement);
+  },
+}, '.elements');
+
 
 api.getUserInfo() //загрузка информации о пользователе
 .then((userData) => {
@@ -50,18 +56,25 @@ api.getUserInfo() //загрузка информации о пользоват�
   console.log(err);
 })
 
+api.getCards() //загрузка карточек
+.then((cards) => {
+  cardsList.renderItems(cards);
+})
+.catch((err) => {
+  console.log(err);
+})
+
+
 
 
 
 
 //______________________________________
-const cardsList = new Section({ //добавление карточек
-  items: cardsInitial,
-  renderer: (cardItem) => {
-    const cardElement = createCard(cardItem);
-    cardsList.addItemToEnd(cardElement);
-  },
-}, '.elements');
+
+
+
+
+
 
 const popupProfileEdit = new PopupWithForm({  //форма редактирования профиля
   popupSelector: '.profile-popup',
@@ -74,7 +87,7 @@ const popupProfileEdit = new PopupWithForm({  //форма редактиров�
 const popupNewCardAdd = new PopupWithForm({ //форма для добавления новой карточки
   popupSelector: '.new-card',
   handleSubmit: (formData) => {
-    cardsList.addItemToStart(createCard(formData));
+    cardsList.addItemToStart(createCard(formData).createCard());
     popupNewCardAdd.close();
   }
 })
@@ -87,16 +100,16 @@ const userInfo = new UserInfo({ //данные о пользователе
 
 function createCard(cardData) { //создание карточки
   const card = new Card({
-    cardName: cardData.place,
+    cardName: cardData.name,
     cardLink: cardData.link,
     handleCardClick: () => {
-      popupWithImage.open(cardData.place, cardData.link);
+      popupWithImage.open(cardData.name, cardData.link);
     },
     handleOpenConfirmPopup: () => {
       popupDeleteConfirm.open();
     }
   }, '.template');
-  return card.createCard();
+  return card;
 }
 
 
@@ -104,7 +117,6 @@ function createCard(cardData) { //создание карточки
 popupProfileEdit.setEventListeners();
 popupNewCardAdd.setEventListeners();
 popupWithImage.setEventListeners();
-cardsList.renderItems();
 formNewCardValidator.enableValidation();
 formProfileValidator.enableValidation();
 popupDeleteConfirm.setEventListeners();
