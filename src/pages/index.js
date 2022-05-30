@@ -7,6 +7,7 @@ import { Popup } from '../components/Popup.js';
 import { UserInfo } from '../components/UserInfo.js'
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
 import { cardsInitial } from '../utils/cardsInitial.js';
 import {
   nameInput,
@@ -23,10 +24,10 @@ import {
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
 const popupWithImage = new PopupWithImage('.image-popup');
-const popupConfirm = new PopupWithForm({
+const popupDeleteConfirm = new PopupWithConfirm({
   popupSelector: '.confirm-popup',
   handleSubmit: () => {
-    popupConfirm.close();
+    popupDeleteConfirm.close();
   }
 });
 
@@ -67,7 +68,7 @@ function createCard(cardData) { //создание карточки
       popupWithImage.open(cardData.place, cardData.link);
     },
     handleOpenConfirmPopup: () => {
-      popupConfirm.open();
+      popupDeleteConfirm.open();
     }
   }, '.template');
   return card.createCard();
@@ -81,7 +82,7 @@ popupWithImage.setEventListeners();
 cardsList.renderItems();
 formNewCardValidator.enableValidation();
 formProfileValidator.enableValidation();
-popupConfirm.setEventListeners();
+popupDeleteConfirm.setEventListeners();
 
 
 //обработчики
