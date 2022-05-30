@@ -8,6 +8,7 @@ import { UserInfo } from '../components/UserInfo.js'
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
+import { Api } from '../components/Api.js';
 import { cardsInitial } from '../utils/cardsInitial.js';
 import {
   nameInput,
@@ -31,6 +32,29 @@ const popupDeleteConfirm = new PopupWithConfirm({
   }
 });
 
+const api = new Api({
+  baseUrl: 'https://nomoreparties.co/v1/cohort-42',
+  headers: {
+    authorization: 'eb15ed8a-0dd7-4417-b669-3dcdaf5b9cc7',
+    'Content-Type': 'application/json'
+  }
+})
+
+
+api.getUserInfo() //загрузка информации о пользователе
+.then((userData) => {
+  userInfo.setUserInfo(userData)
+  userInfo.setUserAvatar(userData);
+})
+.catch((err) => {
+  console.log(err);
+})
+
+
+
+
+
+//______________________________________
 const cardsList = new Section({ //добавление карточек
   items: cardsInitial,
   renderer: (cardItem) => {
@@ -57,7 +81,8 @@ const popupNewCardAdd = new PopupWithForm({ //форма для добавлен
 
 const userInfo = new UserInfo({ //данные о пользователе
   profileNameSelector: '.profile__title',
-  profileInfoSelector: '.profile__subtitle'
+  profileInfoSelector: '.profile__subtitle',
+  profileAvatarSelector: '.profile__avatar'
 })
 
 function createCard(cardData) { //создание карточки

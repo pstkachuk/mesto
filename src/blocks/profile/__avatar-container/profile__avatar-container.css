@@ -1,6 +1,7 @@
 .profile__avatar-container {
   position: relative;
   margin-right: 30px;
+  border-radius: 50% ;
 }
 
 .profile__avatar-container::before {
@@ -14,6 +15,7 @@
   background-color: #000000;
   opacity: 0;
   transition: opacity .5s ease-in-out;
+  border-radius: 50%;
 }
 
 .profile__avatar-container:hover::before {
