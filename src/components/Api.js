@@ -28,7 +28,7 @@ export class Api {
   }
 
   setUserInfo(name, about) {
-    return fetch(this._baseUrl + 'users/me' , {
+    return fetch(this._baseUrl + '/users/me', {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -36,5 +36,6 @@ export class Api {
         about
       })
     })
+    .then(this._requestIsOk);
   }
 }

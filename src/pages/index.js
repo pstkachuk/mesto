@@ -80,6 +80,10 @@ const popupProfileEdit = new PopupWithForm({  //форма редактиров�
   popupSelector: '.profile-popup',
   handleSubmit: (formData) => {
     userInfo.setUserInfo(formData);
+    api.setUserInfo(formData.name, formData.about)
+      .then((userDataUpdate) => {
+        console.log(userDataUpdate);
+      });
     popupProfileEdit.close();
   }
 })
