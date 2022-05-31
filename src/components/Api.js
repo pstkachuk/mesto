@@ -50,4 +50,12 @@ export class Api {
     })
     .then(this._requestIsOk);
   }
+
+  deleteCard(id) {
+    return fetch(this._baseUrl + `/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(this._requestIsOk);
+  }
 }

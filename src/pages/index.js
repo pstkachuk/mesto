@@ -19,18 +19,13 @@ import {
   validateConfig,
 } from '../utils/constants.js';
 
-let userId;
+let userId = null;
 
 //создание классов
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
 const popupWithImage = new PopupWithImage('.image-popup');
-const popupDeleteConfirm = new PopupWithConfirm({
-  popupSelector: '.confirm-popup',
-  handleSubmit: () => {
-    popupDeleteConfirm.close();
-  }
-});
+const popupDeleteConfirm = new PopupWithConfirm({popupSelector: '.confirm-popup'});
 
 const api = new Api({
   baseUrl: 'https://nomoreparties.co/v1/cohort-42',
@@ -52,6 +47,7 @@ api.getUserInfo() //загрузка информации о пользоват�
 .then((userData) => {
   userInfo.setUserInfo(userData)
   userInfo.setUserAvatar(userData);
+  userId = userData._id;
 })
 .catch((err) => {
   console.log(err);
@@ -64,7 +60,6 @@ api.getCards() //загрузка карточек
 .catch((err) => {
   console.log(err);
 })
-
 
 
 
@@ -116,10 +111,23 @@ function createCard(cardData) { //создание карточки
     cardName: cardData.name,
     cardLink: cardData.link,
     cardLikes: cardData.likes.length,
+    ownerId: cardData.owner._id,
+    userId,
     handleCardClick: () => {
       popupWithImage.open(cardData.name, cardData.link);
     },
-    handleOpenConfirmPopup: () => {
+    handleConfirmPopup: () => {
+      popupDeleteConfirm.handleSubmit(() => {
+        api.deleteCard(cardData._id)
+        .then(() => {
+          card.removeCard();
+          popupDeleteConfirm.close();
+        })
+        .catch((err) => {
+          console.log(err);
+          popupDeleteConfirm.close();
+        });
+      })
       popupDeleteConfirm.open();
     },
     handleLikeClick: () => {
