@@ -19,6 +19,7 @@ import {
   validateConfig,
 } from '../utils/constants.js';
 
+let userId;
 
 //создание классов
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
@@ -114,11 +115,16 @@ function createCard(cardData) { //создание карточки
   const card = new Card({
     cardName: cardData.name,
     cardLink: cardData.link,
+    cardLikes: cardData.likes.length,
     handleCardClick: () => {
       popupWithImage.open(cardData.name, cardData.link);
     },
     handleOpenConfirmPopup: () => {
       popupDeleteConfirm.open();
+    },
+    handleLikeClick: () => {
+
+
     }
   }, '.template');
   return card;

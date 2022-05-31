@@ -1,10 +1,12 @@
 export class Card {
-  constructor({cardName, cardLink, handleCardClick, handleOpenConfirmPopup}, templateSelector) {
+  constructor({cardName, cardLink, cardLikes, handleCardClick, handleOpenConfirmPopup, handleLikeClick}, templateSelector) {
     this._cardName = cardName;
     this._cardLink = cardLink;
+    this._cardLikes = cardLikes;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._handleOpenConfirmPopup = handleOpenConfirmPopup; //
+    this._handleOpenConfirmPopup = handleOpenConfirmPopup;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {  //выбрать шаблон
@@ -28,6 +30,7 @@ export class Card {
   _setEventListeners() { //поставить слушатели
     this._buttonLike.addEventListener('click', () => {
       this._like();
+      this._handleLikeClick();
     });
     this._element.querySelector('.element__delete-button').addEventListener('click', this._handleOpenConfirmPopup);
     this._elementImage.addEventListener('click', () => {
@@ -39,11 +42,14 @@ export class Card {
     this._element = this._getTemplate();
     this._buttonLike = this._element.querySelector('.element__like-button');
     this._elementImage = this._element.querySelector('.element__image');
+    this._likesCounter = this._element.querySelector('.element__likes-counter');
     this._setEventListeners();
-
     this._elementImage.src = this._cardLink;
     this._elementImage.alt = this._cardName;
     this._element.querySelector('.element__caption').textContent = this._cardName;
+    if (this._cardLikes > 0) {    //если лайков на карточке нет - счётчик не отображается
+      this._likesCounter.textContent = this._cardLikes;
+    }
 
     return this._element;
   }
