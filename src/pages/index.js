@@ -35,6 +35,12 @@ const api = new Api({
   }
 })
 
+const userInfo = new UserInfo({ //данные о пользователе
+  profileNameSelector: '.profile__title',
+  profileInfoSelector: '.profile__subtitle',
+  profileAvatarSelector: '.profile__avatar'
+})
+
 const cardsList = new Section({ //добавление карточек
   renderer: (cardItem) => {
     const cardElement = createCard(cardItem).createCard();
@@ -61,17 +67,6 @@ api.getCards() //загрузка карточек
   console.log(err);
 })
 
-
-
-
-
-//______________________________________
-
-
-
-
-
-
 const popupProfileEdit = new PopupWithForm({  //форма редактирования профиля
   popupSelector: '.profile-popup',
   handleSubmit: (formData) => {
@@ -90,8 +85,8 @@ const popupNewCardAdd = new PopupWithForm({ //форма для добавлен
   popupSelector: '.new-card',
   handleSubmit: (formData) => {
     api.addNewCard(formData.name, formData.link)
-      .then((card) => {
-        cardsList.addItemToStart(createCard(card).createCard());
+      .then((cardNew) => {
+        cardsList.addItemToStart(createCard(cardNew).createCard());
       })
       .catch((err) => {
         console.log(err);
@@ -100,23 +95,18 @@ const popupNewCardAdd = new PopupWithForm({ //форма для добавлен
   }
 })
 
-const userInfo = new UserInfo({ //данные о пользователе
-  profileNameSelector: '.profile__title',
-  profileInfoSelector: '.profile__subtitle',
-  profileAvatarSelector: '.profile__avatar'
-})
-
 function createCard(cardData) { //создание карточки
   const card = new Card({
     cardName: cardData.name,
     cardLink: cardData.link,
-    cardLikes: cardData.likes.length,
-    ownerId: cardData.owner._id,
+    cardLikes: cardData.likes,
     userId,
+    ownerId: cardData.owner._id,
+    cardId: cardData._id,
     handleCardClick: () => {
       popupWithImage.open(cardData.name, cardData.link);
     },
-    handleConfirmPopup: () => {
+    handleDeleteClick: () => {
       popupDeleteConfirm.handleSubmit(() => {
         api.deleteCard(cardData._id)
         .then(() => {
@@ -125,16 +115,16 @@ function createCard(cardData) { //создание карточки
         })
         .catch((err) => {
           console.log(err);
-          popupDeleteConfirm.close();
         });
       })
       popupDeleteConfirm.open();
     },
     handleLikeClick: () => {
-
-
+      card.handleLike();
     }
-  }, '.template');
+  },
+    api,
+    '.template');
   return card;
 }
 
