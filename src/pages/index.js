@@ -7,7 +7,7 @@ import { Popup } from '../components/Popup.js';
 import { UserInfo } from '../components/UserInfo.js'
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
-import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { Api } from '../components/Api.js';
 import {
   nameInput,
@@ -28,7 +28,7 @@ const formProfileValidator = new FormValidator(validateConfig, formProfile);
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
 const formSetAvatarValidator = new FormValidator(validateConfig, formSetAvatar);
 const popupWithImage = new PopupWithImage('.image-popup');
-const popupDeleteConfirm = new PopupWithConfirm({popupSelector: '.confirm-popup'});
+const popupDeleteConfirm = new PopupWithConfirmation({popupSelector: '.confirm-popup'});
 
 const api = new Api({
   baseUrl: 'https://nomoreparties.co/v1/cohort-42',
