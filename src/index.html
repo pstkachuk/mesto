@@ -17,7 +17,7 @@
         <div class="profile__avatar-container">
           <img
             class="profile__avatar"
-            src="<%=require('./images/avatar.jpg')%>"
+            src="."
             alt="Аватар"
           >
           <div class="profile__avatar-edit-button"></div>
@@ -177,13 +177,11 @@
           novalidate>
             <input
               class="popup__input"
-              type="text"
+              type="url"
               name="avatar-link"
               id="avatar-link"
               required
               placeholder="Ссылка"
-              minlength="2"
-              maxlength="30"
             >
             <span class="popup__input-error avatar-link-error"></span>
             <button type="submit" class="popup__submit-button avatar-popup__submit-button">Сохранить</button>

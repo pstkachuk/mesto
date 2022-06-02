@@ -14,8 +14,10 @@ import {
   infoInput,
   buttonEditProfile,
   buttonNewCardsAdd,
+  buttonSetAvatar,
   formNewCard,
   formProfile,
+  formSetAvatar,
   validateConfig,
 } from '../utils/constants.js';
 
@@ -24,6 +26,7 @@ let userId = null;
 //создание классов
 const formProfileValidator = new FormValidator(validateConfig, formProfile);
 const formNewCardValidator = new FormValidator(validateConfig, formNewCard);
+const formSetAvatarValidator = new FormValidator(validateConfig, formSetAvatar);
 const popupWithImage = new PopupWithImage('.image-popup');
 const popupDeleteConfirm = new PopupWithConfirm({popupSelector: '.confirm-popup'});
 
@@ -95,6 +98,21 @@ const popupNewCardAdd = new PopupWithForm({ //форма для добавлен
   }
 })
 
+const popupSetAvatar = new PopupWithForm ({
+  popupSelector: '.avatar-popup',
+  handleSubmit: (formData) => {
+    api.setAvatar(formData['avatar-link'])
+      .then((newAvatar) => {
+        userInfo.setUserAvatar(newAvatar);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    popupSetAvatar.close();
+    }
+  }
+)
+
 function createCard(cardData) { //создание карточки
   const card = new Card({
     cardName: cardData.name,
@@ -133,8 +151,10 @@ function createCard(cardData) { //создание карточки
 popupProfileEdit.setEventListeners();
 popupNewCardAdd.setEventListeners();
 popupWithImage.setEventListeners();
+popupSetAvatar.setEventListeners();
 formNewCardValidator.enableValidation();
 formProfileValidator.enableValidation();
+formSetAvatarValidator.enableValidation();
 popupDeleteConfirm.setEventListeners();
 
 
@@ -152,7 +172,13 @@ function handleOpenEditProfilePopup() {
   popupProfileEdit.open();
 }
 
+function handleOpenSetAvatarPopup () {
+  formSetAvatarValidator.clearErrorMessages();
+  popupSetAvatar.open();
+}
+
 
 //слушатели
 buttonEditProfile.addEventListener('click', handleOpenEditProfilePopup);
 buttonNewCardsAdd.addEventListener('click',handleOpenNewCardPopup);
+buttonSetAvatar.addEventListener('click', handleOpenSetAvatarPopup);
