@@ -73,42 +73,54 @@ api.getCards() //загрузка карточек
 const popupProfileEdit = new PopupWithForm({  //форма редактирования профиля
   popupSelector: '.profile-popup',
   handleSubmit: (formData) => {
+    popupProfileEdit.renderLoading(true);
     api.setUserInfo(formData.name, formData.about)
     .then((formDataUpdate) => {
       userInfo.setUserInfo(formDataUpdate);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupProfileEdit.renderLoading(false);
+        popupProfileEdit.close();
       });
-    popupProfileEdit.close();
   }
 })
 
 const popupNewCardAdd = new PopupWithForm({ //форма для добавления новой карточки
   popupSelector: '.new-card',
   handleSubmit: (formData) => {
+    popupNewCardAdd.renderLoading(true);
     api.addNewCard(formData.name, formData.link)
       .then((cardNew) => {
         cardsList.addItemToStart(createCard(cardNew).createCard());
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupNewCardAdd.renderLoading(false);
+        popupNewCardAdd.close();
       });
-    popupNewCardAdd.close();
   }
 })
 
 const popupSetAvatar = new PopupWithForm ({
   popupSelector: '.avatar-popup',
   handleSubmit: (formData) => {
+    popupSetAvatar.renderLoading(true);
     api.setAvatar(formData['avatar-link'])
       .then((newAvatar) => {
         userInfo.setUserAvatar(newAvatar);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupSetAvatar.renderLoading(false);
+        popupSetAvatar.close();
       });
-    popupSetAvatar.close();
     }
   }
 )
@@ -126,6 +138,7 @@ function createCard(cardData) { //создание карточки
     },
     handleDeleteClick: () => {
       popupDeleteConfirm.handleSubmit(() => {
+        popupDeleteConfirm.renderLoading(true);
         api.deleteCard(cardData._id)
         .then(() => {
           card.removeCard();
@@ -133,6 +146,10 @@ function createCard(cardData) { //создание карточки
         })
         .catch((err) => {
           console.log(err);
+        })
+        .finally(() => {
+          popupDeleteConfirm.close();
+          popupDeleteConfirm.renderLoading(false);
         });
       })
       popupDeleteConfirm.open();
