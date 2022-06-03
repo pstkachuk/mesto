@@ -21,15 +21,20 @@ export class Card {
     return cardTemplate;
   }
 
-  _toggleLikeButtonState() { //переключение состояния кнопки лайка
-    this._buttonLike.classList.toggle('element__like-button_active');
-  }
-
-  _hideZeroLikesCounter(likesData) { // скрыть пустой счётчик
+  _setLikesCounter(likesData) { // установить счётчик лайков
     if (likesData.length > 0) {
       this._likesCounter.textContent = likesData.length;
     } else {
       this._likesCounter.textContent = '';
+    }
+  }
+
+  _updateLikesView(likesData) { //обновление кнопки лайка
+    this._setLikesCounter(likesData);
+    if (this.isLiked()) {
+      this._buttonLike.classList.add('element__like-button_active');
+    } else {
+      this._buttonLike.classList.remove('element__like-button_active');
     }
   }
 
@@ -40,14 +45,7 @@ export class Card {
 
   handleLike(likes) {  // поставить/снять лайк    
     this._cardLikes = likes;
-    this._likesCounter.textContent = this._cardLikes.length;
-    this._hideZeroLikesCounter(likes);
-
-    if (this.isLiked()) {
-        this._toggleLikeButtonState();
-      } else {
-        this._toggleLikeButtonState();
-      }
+    this._updateLikesView(likes);
   }
 
   _setEventListeners() { //поставить слушатели
@@ -84,12 +82,9 @@ export class Card {
       this._buttonDelete.classList.add('element__delete-button_hide');
     }
 
-    if (this.isLiked()) {
-      this._toggleLikeButtonState();
-    } 
+    this._updateLikesView(this._cardLikes);
 
     this._setEventListeners();
-    this._hideZeroLikesCounter(this._cardLikes);
 
     return this._element;
   }
