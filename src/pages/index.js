@@ -92,7 +92,7 @@ const popupNewCardAdd = new PopupWithForm({ //форма для добавлен
   popupSelector: '.new-card',
   handleSubmit: (formData) => {
     popupNewCardAdd.renderLoading(true);
-    api.addNewCard(formData.name, formData.link)
+    api.addNewCard(formData['card-name'], formData.link)
       .then((cardNew) => {
         cardsList.addItemToStart(createCard(cardNew).createCard());
       })
