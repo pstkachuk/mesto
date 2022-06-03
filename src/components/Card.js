@@ -74,6 +74,12 @@ export class Card {
     })
   }
 
+  _isLiked() {
+    return Boolean(this._cardLikes.find((item) => {
+      return this._userId === item._id;
+    }))
+  }
+
   createCard() { //заполнить карточку данными
     this._element = this._getTemplate();
 
@@ -90,12 +96,9 @@ export class Card {
       this._buttonDelete.classList.add('element__delete-button_hide');
     }
 
-    if (this._cardLikes.some((likesData) => {  //если карточка уже была лайкнута - отобразить лайк
-      return this._userId === likesData._id
-    }))
-    {
+    if (this._isLiked()) {
       this._buttonLike.classList.add('element__like-button_active');
-    }
+    } 
 
     this._setEventListeners();
     this._hideZeroLikesCounter(this._cardLikes);
