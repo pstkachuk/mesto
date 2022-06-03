@@ -1,5 +1,5 @@
 export class Card {
-  constructor({cardName, cardLink, cardLikes, userId, ownerId, cardId, handleCardClick, handleDeleteClick, handleLikeClick}, api, templateSelector) {
+  constructor({cardName, cardLink, cardLikes, userId, ownerId, cardId, handleCardClick, handleDeleteClick, handleLikeClick}, templateSelector) {
     this._cardName = cardName;
     this._cardLink = cardLink;
     this._cardLikes = cardLikes;
@@ -10,7 +10,6 @@ export class Card {
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
     this._userId = userId;
-    this._api = api;
   }
 
   _getTemplate() {  //выбрать шаблон
@@ -39,27 +38,16 @@ export class Card {
     this._element = null;
   }
 
-  handleLike() {  // поставить/снять лайк
-    if (this._buttonLike.classList.contains('element__like-button_active')) {
-      this._api.deleteLike(this._cardId)
-      .then((res) => {
+  handleLike(likes) {  // поставить/снять лайк    
+    this._cardLikes = likes;
+    this._likesCounter.textContent = this._cardLikes.length;
+    this._hideZeroLikesCounter(likes);
+
+    if (this.isLiked()) {
         this._toggleLikeButtonState();
-        this._likesCounter.textContent = res.likes.length;
-        this._hideZeroLikesCounter(res.likes);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    } else {
-      this._api.like(this._cardId)
-      .then((res) => {
+      } else {
         this._toggleLikeButtonState();
-        this._likesCounter.textContent = res.likes.length;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
+      }
   }
 
   _setEventListeners() { //поставить слушатели
@@ -74,7 +62,7 @@ export class Card {
     })
   }
 
-  _isLiked() {
+  isLiked() {
     return Boolean(this._cardLikes.find((item) => {
       return this._userId === item._id;
     }))
@@ -96,8 +84,8 @@ export class Card {
       this._buttonDelete.classList.add('element__delete-button_hide');
     }
 
-    if (this._isLiked()) {
-      this._buttonLike.classList.add('element__like-button_active');
+    if (this.isLiked()) {
+      this._toggleLikeButtonState();
     } 
 
     this._setEventListeners();

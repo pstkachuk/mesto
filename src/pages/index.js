@@ -148,11 +148,25 @@ function createCard(cardData) { //создание карточки
       popupDeleteConfirm.open();
     },
     handleLikeClick: () => {
-      card.handleLike();
+      if (card.isLiked()) {
+        api.deleteLike(cardData._id)
+          .then((res) => {
+            card.handleLike(res.likes)
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      } else {
+        api.like(cardData._id)
+          .then((res) => {
+            card.handleLike(res.likes)
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }
     }
-  },
-    api,
-    '.template');
+  }, '.template');
   return card;
 }
 
