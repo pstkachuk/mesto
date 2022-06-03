@@ -52,23 +52,16 @@ const cardsList = new Section({ //добавление карточек
 }, '.elements');
 
 
-api.getUserInfo() //загрузка информации о пользователе
-.then((userData) => {
-  userInfo.setUserInfo(userData)
-  userInfo.setUserAvatar(userData);
-  userId = userData._id;
-})
-.catch((err) => {
-  console.log(err);
-})
-
-api.getCards() //загрузка карточек
-.then((cards) => {
-  cardsList.renderItems(cards);
-})
-.catch((err) => {
-  console.log(err);
-})
+api.getAllData() //получить все данные пользователя и карточки
+  .then(([userData, cards]) => {
+    userId = userData._id;
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    cardsList.renderItems(cards);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
 const popupProfileEdit = new PopupWithForm({  //форма редактирования профиля
   popupSelector: '.profile-popup',

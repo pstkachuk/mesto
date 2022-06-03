@@ -27,6 +27,13 @@ export class Api {
     .then(this._requestIsOk);
   }
 
+  getAllData() {
+    return Promise.all([
+      this.getUserInfo(),
+      this.getCards()
+    ]);
+  }
+
   setUserInfo(name, about) {
     return fetch(this._baseUrl + '/users/me', {
       method: 'PATCH',
