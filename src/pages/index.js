@@ -19,6 +19,8 @@ import {
   formProfile,
   formSetAvatar,
   validateConfig,
+  templateForCard,
+  containerForCards,
 } from '../utils/constants.js';
 
 let userId = null;
@@ -49,7 +51,7 @@ const cardsList = new Section({ //добавление карточек
     const cardElement = createCard(cardItem).createCard();
     cardsList.addItemToEnd(cardElement);
   },
-}, '.elements');
+}, containerForCards);
 
 
 api.getAllData() //получить все данные пользователя и карточки
@@ -166,7 +168,7 @@ function createCard(cardData) { //создание карточки
           })
       }
     }
-  }, '.template');
+  }, templateForCard);
   return card;
 }
 

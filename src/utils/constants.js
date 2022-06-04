@@ -6,6 +6,8 @@ export const buttonSetAvatar = document.querySelector('.profile__avatar-edit-but
 export const formNewCard = document.querySelector('.new-card__form');
 export const formProfile = document.querySelector('.profile-popup__form');
 export const formSetAvatar = document.querySelector('.avatar-popup__form');
+export const templateForCard = '.template';
+export const containerForCards = '.elements';
 export const validateConfig = { //настройки валидации
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
